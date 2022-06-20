@@ -4,8 +4,8 @@ import router from './router'
 import socketService from './services/socketService'
 import store from './store'
 
-const connectLink = location.host === 'localhost:8080' ? 'http://localhost:9000' : 'https://tictactoe-server-1ns.herokuapp.com'
-// const connectLink = "https://tictactoe-server-1ns.herokuapp.com";
+const connectLink = location.host === 'localhost:8080' ? 'http://localhost:5000' : 'https://pixel-checkers-server.herokuapp.com'
+// const connectLink = "https://pixel-checkers-server.herokuapp.com";
 socketService.connect(connectLink)
   .then(() => {
     console.log('Socket connected to ' + connectLink)
