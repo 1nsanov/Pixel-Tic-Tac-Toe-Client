@@ -37,7 +37,7 @@ export default class HeaderLayout extends Vue {}
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-fill-color: transparent;
+      // text-fill-color: transparent;
     }
     @media screen and (max-width: 400px) {
       .header_container_main-title {

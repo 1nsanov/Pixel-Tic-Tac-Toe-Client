@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import components from './components/UI'
 import router from './router'
 import socketService from './services/socketService'
 import store from './store'
@@ -15,6 +16,8 @@ socketService.connect(connectLink)
     console.log("Error ", err);
   });
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App);
+components(app)
+app.use(store).use(router).mount('#app')
 
 

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <!-- <div class="home_title">PIXEL CHECKERS</div> -->
     
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nulla amet, animi rerum iure quis illo ipsum quo exercitationem! Iure error repellat dicta voluptas quam quisquam eius nesciunt quod est.
+    <ui-button color="default">Click me</ui-button>
+    <ui-button color="green">Click me</ui-button>
   </div>
 </template>
 
