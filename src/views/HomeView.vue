@@ -1,19 +1,6 @@
 <template>
   <div class="home">
-    <div class="home_title">Welcome!</div>
-    <div class="home_main">
-      <!-- <input type="text" class="input" v-model="name" placeholder="Name..." />
-      <input
-        type="password"
-        class="input"
-        v-model="password"
-        placeholder="Password..."
-      />
-      <button class="btn" @click="register">Register</button>
-      <button class="btn" @click="login">Login</button> -->
-      <JoinRoom v-if="!$store.state.isInRoom"/>
-      <Game v-else />
-    </div>
+    <div class="home_title">PIXEL CHECKERS</div>
   </div>
 </template>
 
@@ -97,7 +84,7 @@ export default class HomeView extends Vue {
   .home_title {
     font-size: 36px;
     font-weight: 700;
-    color: rgb(18, 132, 225);
+    color: rgb(255, 255, 255);
   }
   .home_main {
     width: 100%;

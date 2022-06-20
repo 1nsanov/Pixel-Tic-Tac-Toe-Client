@@ -14,7 +14,7 @@ html {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 16px;
-  color: #000;
-  background: rgb(253, 255, 245);
+  color: rgb(255, 255, 255);
+  background: linear-gradient(63.18deg, #0F2027 0%, #203A43 49.48%, #2C5364 100%);
 }
 </style>
