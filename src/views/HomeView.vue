@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <div class="home_title">PIXEL CHECKERS</div>
+    <!-- <div class="home_title">PIXEL CHECKERS</div> -->
+    
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nulla amet, animi rerum iure quis illo ipsum quo exercitationem! Iure error repellat dicta voluptas quam quisquam eius nesciunt quod est.
   </div>
 </template>
 
@@ -74,43 +76,43 @@ export default class HomeView extends Vue {
 </script>
 
 <style lang="less" scoped>
-.home {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .home_title {
-    font-size: 36px;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-  }
-  .home_main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .input {
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: 2px solid rgb(18, 132, 225);
-      margin: 10px;
-    }
-    .btn {
-      height: 32px;
-      font-weight: 700;
-      padding: 5px;
-      border-radius: 8px;
-      background: rgb(18, 132, 225);
-      color: #fff;
-      cursor: pointer;
-      padding: 0 15px;
-      margin: 5px;
-      min-width: 160px;
-    }
-  }
-}
+// .home {
+//   width: 100%;
+//   height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   .home_title {
+//     font-size: 36px;
+//     font-weight: 700;
+//     color: rgb(255, 255, 255);
+//   }
+//   .home_main {
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     .input {
+//       padding: 6px 12px;
+//       border-radius: 8px;
+//       border: 2px solid rgb(18, 132, 225);
+//       margin: 10px;
+//     }
+//     .btn {
+//       height: 32px;
+//       font-weight: 700;
+//       padding: 5px;
+//       border-radius: 8px;
+//       background: rgb(18, 132, 225);
+//       color: #fff;
+//       cursor: pointer;
+//       padding: 0 15px;
+//       margin: 5px;
+//       min-width: 160px;
+//     }
+//   }
+// }
 </style>
