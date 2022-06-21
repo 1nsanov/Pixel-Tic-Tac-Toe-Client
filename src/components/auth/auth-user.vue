@@ -1,6 +1,6 @@
 <template>
   <div class="auth-user">
-    sadfasdfasfasfas
+    Registration
   </div>
 </template>
 
