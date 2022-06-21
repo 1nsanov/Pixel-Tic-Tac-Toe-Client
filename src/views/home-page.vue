@@ -28,11 +28,12 @@ export default class HomePage extends Vue {
   }
 
   GoToRegister(){
-
+    console.log('GoToRegister');
+    this.$router.push({ name: "register" });
   }
 
   GoToLogin(){
-    
+    this.$router.push({ name: "login" });
   }
 }
 </script>
