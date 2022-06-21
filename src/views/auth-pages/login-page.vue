@@ -1,6 +1,6 @@
 <template>
   <div class="registration-page">
-    <auth-user @confirm="confirm"/>
+    <auth-user @confirm="confirm" :isLogin="true"/>
   </div>
 </template>
 
@@ -8,12 +8,12 @@
 import { Options, Vue } from "vue-class-component";
 import AuthUser from "../../components/auth/auth-user.vue";
 @Options({
-  name: "registration-page",
+  name: "login-page",
   components: {
     AuthUser,
   },
 })
-export default class RegistrationPage extends Vue {
+export default class LoginPage extends Vue {
 
   confirm(){
     console.log("confirm");

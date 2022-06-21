@@ -32,7 +32,7 @@ export default class HomePage extends Vue {
   }
 
   GoToLogin(){
-    // this.$router.push({ name: "login" });
+    this.$router.push({ name: "login" });
   }
 }
 </script>

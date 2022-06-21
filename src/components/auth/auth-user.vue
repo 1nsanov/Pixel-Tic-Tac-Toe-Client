@@ -1,6 +1,8 @@
 <template>
   <div class="auth-user">
-    <div class="auth-user_title">Registration</div>
+    <div class="auth-user_title" :class="{ green: isLogin, blue: !isLogin }">
+      {{ title }}
+    </div>
     <div class="auth-user_form">
       <div class="auth-user_form_content">
         <div
@@ -36,13 +38,18 @@
         <div class="auth-user_form_content_confirm">
           <ui-button
             :style="{ width: `100%` }"
-            color="default"
-            @onClick="actionClick"
-            >Registration</ui-button
+            :color="!isLogin ? 'default' : 'green'"
+            @onClick="confirm"
+            >{{ textButton }}</ui-button
           >
         </div>
         <div class="auth-user_form_content_footer">
-          You have already created account?<span>Login!</span>
+          {{ footerMsg
+          }}<span
+            :class="{ green: !isLogin, blue: isLogin }"
+            @click="GoToLink"
+            >{{ actionText }}</span
+          >
         </div>
       </div>
     </div>
@@ -56,13 +63,37 @@ import { Prop } from "vue-property-decorator";
   name: "auth-user",
 })
 export default class AuthUser extends Vue {
-  @Prop({ type: String, default: "reg" }) type!: string;
+  @Prop({ type: Boolean, default: false }) isLogin!: boolean;
+
+  title = "Registration";
+  textButton = "Registration";
+  footerMsg = "You have already created account?" ;
+  actionText = " Login!";
 
   nickname = "";
   password = "";
 
-  actionClick(){
-    console.log(this.nickname, this.password);
+  created() {
+    if (this.isLogin) {
+      this.title = " Login";
+      this.textButton = "Login";
+      this.footerMsg = "Don't have an account? ";
+      this.actionText = "Register!";
+    }
+  }
+
+  confirm() {
+    this.password = "";
+    this.$emit("confirm");
+  }
+
+  GoToLink(){
+    if (this.isLogin) {
+      this.$router.push({ name: "register" });
+    }
+    else{
+      this.$router.push({ name: "login" });
+    }
   }
 }
 </script>
@@ -75,12 +106,9 @@ export default class AuthUser extends Vue {
     text-align: center;
     font-size: 40px;
     line-height: 34px;
-    background: linear-gradient(180deg, #ffffff 0%, #6fc2ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: 10px;
   }
+
   .auth-user_form {
     width: 100%;
     min-height: 300px;
@@ -119,11 +147,6 @@ export default class AuthUser extends Vue {
         font-size: 16px;
         line-height: 13px;
         span {
-          margin-left: 4px;
-          background: linear-gradient(180deg, #ffffff 0%, #76ff84 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
           cursor: pointer;
           transition: ease 0.3s;
         }
@@ -133,5 +156,17 @@ export default class AuthUser extends Vue {
       }
     }
   }
+}
+.blue {
+  background: linear-gradient(180deg, #ffffff 0%, #6fc2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.green {
+  background: linear-gradient(180deg, #ffffff 0%, #76ff84 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 </style>
