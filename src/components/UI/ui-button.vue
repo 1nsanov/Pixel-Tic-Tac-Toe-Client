@@ -1,17 +1,25 @@
 <template>
   <div class="ui-button">
     <button
-      @click="$emit('click')"
+      @click="$emit('onClick')"
       class="base-button"
       :class="{
         'default-thema-btn': color === 'default',
         'green-thema-btn': color === 'green',
+        'orange-thema-btn': color === 'orange',
+        'red-thema-btn': color === 'red',
+        'small-size': size === 'small',
+        'medium-size': size === 'medium',
+        'big-size': size === 'big',
       }"
+      :disabled="disabled"
     >
       <span
         :class="{
           'default-thema-text': color === 'default',
           'green-thema-text': color === 'green',
+          'orange-thema-text': color === 'orange',
+          'red-thema-text': color === 'red',
         }"
       >
         <slot></slot>
@@ -30,6 +38,7 @@ import { Prop } from "vue-property-decorator";
 export default class UiButton extends Vue {
   @Prop({ default: "default", type: String }) color!: string;
   @Prop({ default: "small", type: String }) size!: string;
+  @Prop({ default: false, type: Boolean }) disabled!: boolean;
 }
 </script>
 
@@ -47,6 +56,7 @@ export default class UiButton extends Vue {
     border-radius: 10px;
     transition: ease 0.3s;
     letter-spacing: inherit;
+    //themas
     .default-thema-text {
       background: linear-gradient(180deg, #ffffff 0%, #6fc2ff 100%);
       -webkit-background-clip: text;
@@ -59,10 +69,23 @@ export default class UiButton extends Vue {
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .orange-thema-text {
+      background: linear-gradient(180deg, #ffffff 0%, #ffd66b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .red-thema-text {
+      background: linear-gradient(180deg, #ffffff 0%, #ff6363 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   }
   .base-button:hover {
     filter: contrast(2.2);
   }
+  //themas
   .default-thema-btn {
     background: linear-gradient(
       180deg,
@@ -76,6 +99,35 @@ export default class UiButton extends Vue {
       #55f752 0%,
       rgba(36, 206, 33, 0) 117.5%
     );
+  }
+  .orange-thema-btn {
+    background: linear-gradient(
+      180deg,
+      #f1a511 0%,
+      rgba(241, 165, 17, 0) 132.5%
+    );
+  }
+  .red-thema-btn {
+    background: linear-gradient(
+      180deg,
+      #f20f0f 0%,
+      rgba(242, 15, 15, 0) 128.75%
+    );
+  }
+  .small-size {
+    min-width: 160px;
+    height: 40px;
+    font-size: 20px;
+  }
+  .medium-size {
+    min-width: 200px;
+    height: 50px;
+    font-size: 28px;
+  }
+  .big-size {
+    min-width: 240px;
+    height: 60px;
+    font-size: 36px;
   }
 }
 </style>

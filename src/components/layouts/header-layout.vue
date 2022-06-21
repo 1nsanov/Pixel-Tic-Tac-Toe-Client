@@ -26,8 +26,8 @@ export default class HeaderLayout extends Vue {}
       text-align: center;
       font-size: 96px;
       line-height: 81px;
-      text-decoration: underline;
       text-transform: uppercase;
+      text-decoration: underline;
       background: linear-gradient(
         180deg,
         #ffffff 0%,

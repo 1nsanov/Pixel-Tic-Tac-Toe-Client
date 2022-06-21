@@ -1,8 +1,6 @@
 <template>
   <div class="home">
     
-    <ui-button color="default">Click me</ui-button>
-    <ui-button color="green">Click me</ui-button>
   </div>
 </template>
 
@@ -23,6 +21,10 @@ import IUserModel from "../services/authService/models/IUserModel";
 export default class HomeView extends Vue {
   name: string = "";
   password: string = "";
+
+  testClick(){
+    console.log("testClick");
+  }
 
   async register() {
     const socket = socketService.socket
