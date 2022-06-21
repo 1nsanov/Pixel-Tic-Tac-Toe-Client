@@ -1,31 +1,29 @@
 <template>
-  <div class="ui-button">
-    <button
-      @click="$emit('onClick')"
-      class="base-button"
+  <button
+    @click="$emit('onClick')"
+    class="base-button"
+    :class="{
+      'default-thema-btn': color === 'default',
+      'green-thema-btn': color === 'green',
+      'orange-thema-btn': color === 'orange',
+      'red-thema-btn': color === 'red',
+      'small-size': size === 'small',
+      'medium-size': size === 'medium',
+      'big-size': size === 'big',
+    }"
+    :disabled="disabled"
+  >
+    <span
       :class="{
-        'default-thema-btn': color === 'default',
-        'green-thema-btn': color === 'green',
-        'orange-thema-btn': color === 'orange',
-        'red-thema-btn': color === 'red',
-        'small-size': size === 'small',
-        'medium-size': size === 'medium',
-        'big-size': size === 'big',
+        'default-thema-text': color === 'default',
+        'green-thema-text': color === 'green',
+        'orange-thema-text': color === 'orange',
+        'red-thema-text': color === 'red',
       }"
-      :disabled="disabled"
     >
-      <span
-        :class="{
-          'default-thema-text': color === 'default',
-          'green-thema-text': color === 'green',
-          'orange-thema-text': color === 'orange',
-          'red-thema-text': color === 'red',
-        }"
-      >
-        <slot></slot>
-      </span>
-    </button>
-  </div>
+      <slot></slot>
+    </span>
+  </button>
 </template>
 
 <script lang="ts">
@@ -43,91 +41,77 @@ export default class UiButton extends Vue {
 </script>
 
 <style lang="less">
-.ui-button {
-  .base-button {
-    min-width: 160px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-family: inherit;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: ease 0.3s;
-    letter-spacing: inherit;
-    //themas
-    .default-thema-text {
-      background: linear-gradient(180deg, #ffffff 0%, #6fc2ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .green-thema-text {
-      background: linear-gradient(180deg, #ffffff 0%, #9effa8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .orange-thema-text {
-      background: linear-gradient(180deg, #ffffff 0%, #ffd66b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .red-thema-text {
-      background: linear-gradient(180deg, #ffffff 0%, #ff6363 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-  }
-  .base-button:hover {
-    filter: contrast(2.2);
-  }
+.base-button {
+  min-width: 160px;
+  height: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: ease 0.3s;
+  letter-spacing: inherit;
   //themas
-  .default-thema-btn {
-    background: linear-gradient(
-      180deg,
-      #1588f1 -10%,
-      rgba(21, 136, 241, 0) 120%
-    );
+  .default-thema-text {
+    background: linear-gradient(180deg, #ffffff 0%, #6fc2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .green-thema-btn {
-    background: linear-gradient(
-      180deg,
-      #55f752 0%,
-      rgba(36, 206, 33, 0) 117.5%
-    );
+  .green-thema-text {
+    background: linear-gradient(180deg, #ffffff 0%, #9effa8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .orange-thema-btn {
-    background: linear-gradient(
-      180deg,
-      #f1a511 0%,
-      rgba(241, 165, 17, 0) 132.5%
-    );
+  .orange-thema-text {
+    background: linear-gradient(180deg, #ffffff 0%, #ffd66b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .red-thema-btn {
-    background: linear-gradient(
-      180deg,
-      #f20f0f 0%,
-      rgba(242, 15, 15, 0) 128.75%
-    );
+  .red-thema-text {
+    background: linear-gradient(180deg, #ffffff 0%, #ff6363 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .small-size {
-    min-width: 160px;
-    height: 40px;
-    font-size: 20px;
-  }
-  .medium-size {
-    min-width: 200px;
-    height: 50px;
-    font-size: 28px;
-  }
-  .big-size {
-    min-width: 240px;
-    height: 60px;
-    font-size: 36px;
-  }
+}
+.base-button:hover {
+  filter: contrast(2.2);
+}
+//themas
+.default-thema-btn {
+  background: linear-gradient(180deg, #1588f1 -10%, rgba(21, 136, 241, 0) 120%);
+}
+.green-thema-btn {
+  background: linear-gradient(180deg, #55f752 0%, rgba(36, 206, 33, 0) 117.5%);
+}
+.orange-thema-btn {
+  background: linear-gradient(180deg, #f1a511 0%, rgba(241, 165, 17, 0) 132.5%);
+}
+.red-thema-btn {
+  background: linear-gradient(180deg, #f20f0f 0%, rgba(242, 15, 15, 0) 128.75%);
+}
+.small-size {
+  min-width: 160px;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 20px;
+}
+.medium-size {
+  min-width: 200px;
+  height: 50px;
+  padding: 0 15px;
+  font-size: 28px;
+}
+.big-size {
+  min-width: 240px;
+  height: 60px;
+  padding: 0 20px;
+  font-size: 36px;
 }
 </style>

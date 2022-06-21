@@ -41,6 +41,6 @@ table {
 input:focus{
 	outline: none;
 }
-*{
+*, html, body{
 	box-sizing: border-box;
 }

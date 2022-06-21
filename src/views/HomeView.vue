@@ -22,10 +22,6 @@ export default class HomeView extends Vue {
   name: string = "";
   password: string = "";
 
-  testClick(){
-    console.log("testClick");
-  }
-
   async register() {
     const socket = socketService.socket
     if (this.name.length === 0 || this.password.length === 0 || !socket) return;

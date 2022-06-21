@@ -22,6 +22,8 @@ export default class HeaderLayout extends Vue {}
     justify-content: center;
     align-items: center;
     padding: 50px 15px 0 15px;
+    text-decoration: underline;
+    color: #bdffe7 ;
     .header_container_main-title {
       text-align: center;
       font-size: 96px;
