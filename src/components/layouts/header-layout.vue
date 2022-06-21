@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header_container">
-      <div class="header_container_main-title">pixel checkers</div>
+      <h1 class="header_container_main-title">pixel checkers</h1>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default class HeaderLayout extends Vue {}
       background-clip: text;
       // text-fill-color: transparent;
     }
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 650px) {
       .header_container_main-title {
         font-size: 64px;
         line-height: 54px;

@@ -20,6 +20,7 @@ export default class ContentLayout extends Vue {}
   width: 100%;
   height: 100%;
   padding-bottom: 75px;
+  padding-top: 30px;
   .content-layout_container {
     margin: 0 auto;
     max-width: 994px;
