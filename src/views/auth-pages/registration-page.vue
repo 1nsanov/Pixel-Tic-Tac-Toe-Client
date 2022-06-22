@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import AuthUser from "../../components/auth/auth-user.vue";
-import IAuthUser from "../../interfaces/IAuthUser";
+import IUserForm from "../../interfaces/IUserForm";
 
 @Options({
   name: "registration-page",
@@ -17,7 +17,7 @@ import IAuthUser from "../../interfaces/IAuthUser";
 })
 export default class RegistrationPage extends Vue {
 
-  confirm(user: IAuthUser){
+  confirm(user: IUserForm){
     console.log("register user: ", user);
   }
 }

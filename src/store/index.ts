@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
+import AuthUser from '../interfaces/AuthUser'
 
 export default createStore({
   state: {
+    AuthUser: new AuthUser(),
+
     isInRoom: false,
     playerSymbol: 'x',
     isPlayerTurn: true,
@@ -14,5 +17,6 @@ export default createStore({
   actions: {
   },
   modules: {
+
   }
 })

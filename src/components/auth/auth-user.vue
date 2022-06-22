@@ -59,7 +59,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { Prop } from "vue-property-decorator";
-import IAuthUser from "../../interfaces/IAuthUser"
+import IUserForm from "../../interfaces/IUserForm"
 @Options({
   name: "auth-user",
 })
@@ -105,7 +105,7 @@ export default class AuthUser extends Vue {
     }
   }
 
-  createUser(): IAuthUser{
+  createUser(): IUserForm{
     return {
       Nickname: this.nickname,
       Password: this.password
