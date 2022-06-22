@@ -34,7 +34,7 @@
             </ui-input>
           </div>
         </div>
-        <div class="auth-user_form_content_error-msg"></div>
+        <div class="auth-user_form_content_error-msg">{{ errorMsg }}</div>
         <div class="auth-user_form_content_confirm">
           <ui-button
             :style="{ width: `100%` }"
@@ -59,6 +59,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { Prop } from "vue-property-decorator";
+import IAuthUser from "../../interfaces/IAuthUser"
 @Options({
   name: "auth-user",
 })
@@ -67,15 +68,16 @@ export default class AuthUser extends Vue {
 
   title = "Registration";
   textButton = "Registration";
-  footerMsg = "You have already created account?" ;
+  footerMsg = "You have already created account?";
   actionText = " Login!";
+  errorMsg = "";
 
   nickname = "";
   password = "";
 
   created() {
     if (this.isLogin) {
-      this.title = " Login";
+      this.title = "Login";
       this.textButton = "Login";
       this.footerMsg = "Don't have an account? ";
       this.actionText = "Register!";
@@ -83,15 +85,37 @@ export default class AuthUser extends Vue {
   }
 
   confirm() {
+    let isValid = this.validation();
+    if (isValid) {
+      let user = this.createUser();
+      this.$emit("confirm", user);
+    }
     this.password = "";
-    this.$emit("confirm");
   }
 
-  GoToLink(){
-    if (this.isLogin) {
-      this.$router.push({ name: "register" });
+  validation() {
+    this.errorMsg = ""
+    if (this.nickname.length >= 4 && this.password.length >= 6) {
+      return true;
     }
     else{
+      if(this.nickname.length < 4) this.errorMsg = "Nickname must be at least 4 characters\n"
+      if(this.password.length < 6) this.errorMsg += "Password must be at least 6 characters\n"
+      return false;
+    }
+  }
+
+  createUser(): IAuthUser{
+    return {
+      Nickname: this.nickname,
+      Password: this.password
+    }
+  }
+
+  GoToLink() {
+    if (this.isLogin) {
+      this.$router.push({ name: "register" });
+    } else {
       this.$router.push({ name: "login" });
     }
   }
