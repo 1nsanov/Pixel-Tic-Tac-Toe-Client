@@ -10,7 +10,7 @@ import JoinRoom from "../components/JoinRoom.vue";
 import Game from "../components/Game.vue";
 import socketService from "../api/services/socketService";
 import authService from "../api/services/authService";
-import IUserModel from "../api/services/authService/models/IUserModel";
+import IUserModel from "../api/services/authService/models/IUserLogin";
 
 @Options({
   components: {
@@ -19,57 +19,57 @@ import IUserModel from "../api/services/authService/models/IUserModel";
   },
 })
 export default class HomeView extends Vue {
-  name: string = "";
-  password: string = "";
+  // name: string = "";
+  // password: string = "";
 
-  async register() {
-    const socket = socketService.socket
-    if (this.name.length === 0 || this.password.length === 0 || !socket) return;
-    let user: IUserModel = {
-      name: this.name,
-      password: this.password,
-    };
-    console.log("Registering...", user);
-    const registered = await authService.userRegister(socket, user).catch(err => {
-      alert(err.error);
-    });
-    console.log(registered);
-    if (registered) {
-      console.log("Registered is successful");
-    }
-    else{
-      console.log("Registered is failed");
-    }
+  // async register() {
+  //   const socket = socketService.socket
+  //   if (this.name.length === 0 || this.password.length === 0 || !socket) return;
+  //   let user: IUserModel = {
+  //     name: this.name,
+  //     password: this.password,
+  //   };
+  //   console.log("Registering...", user);
+  //   const registered = await authService.userRegister(socket, user).catch(err => {
+  //     alert(err.error);
+  //   });
+  //   console.log(registered);
+  //   if (registered) {
+  //     console.log("Registered is successful");
+  //   }
+  //   else{
+  //     console.log("Registered is failed");
+  //   }
 
-    this.clearInputs();
-  }
+  //   this.clearInputs();
+  // }
 
-  async login(){
-    const socket = socketService.socket
-    if (!socket) return;
-    let user: IUserModel = {
-      name: this.name,
-      password: this.password,
-    };
-    console.log("Logging in...", user);
-    const loggedIn = await authService.userLogin(socket, user).catch(err => {
-      alert(err.error);
-    });
-    console.log(loggedIn);
-    if (loggedIn) {
-      console.log("Logged in is successful");
-    }
-    else{
-      console.log("Logged in is failed");
-    }
+  // async login(){
+  //   const socket = socketService.socket
+  //   if (!socket) return;
+  //   let user: IUserModel = {
+  //     name: this.name,
+  //     password: this.password,
+  //   };
+  //   console.log("Logging in...", user);
+  //   const loggedIn = await authService.userLogin(socket, user).catch(err => {
+  //     alert(err.error);
+  //   });
+  //   console.log(loggedIn);
+  //   if (loggedIn) {
+  //     console.log("Logged in is successful");
+  //   }
+  //   else{
+  //     console.log("Logged in is failed");
+  //   }
 
-    this.clearInputs();
-  }
+  //   this.clearInputs();
+  // }
 
-  clearInputs() {
-    this.name = "";
-    this.password = "";
-  }
+  // clearInputs() {
+  //   this.name = "";
+  //   this.password = "";
+  // }
 }
 </script>
 

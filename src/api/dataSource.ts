@@ -1,5 +1,5 @@
 
-import AuthUser from "@/interfaces/AuthUser";
+import AuthUser from "@/api/services/authService/models/AuthUser";
 import { Vue } from "vue-class-component";
 
 export default class DataSource extends Vue {

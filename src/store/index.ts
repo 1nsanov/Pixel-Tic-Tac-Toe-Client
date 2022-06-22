@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import AuthUser from '../interfaces/AuthUser'
+import AuthUser from '../api/services/authService/models/AuthUser'
 
 export default createStore({
   state: {

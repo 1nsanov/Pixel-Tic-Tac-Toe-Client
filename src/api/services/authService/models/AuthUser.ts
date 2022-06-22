@@ -8,4 +8,5 @@ export default class AuthUser{
   CountLosses: number = 0;
   Score: number = 0;
   StatusOnline: boolean = false;
+  DataRegister: string = "";
 }
