@@ -23,13 +23,12 @@ export default class LoginPage extends Vue {
   async confirm(user: IUserForm) {
     const socket = socketService.socket;
     if (!socket) return;
-    console.log(user);
-
+    // console.log(user);
     await authService
       .userLogin(socket, user)
       .then((res) => {
         this.$store.state.AuthUser = res;
-        console.log(this.$store.state.AuthUser);
+        console.log("Current user: ", this.$store.state.AuthUser);
         this.$router.push({ name: "lobbi" });
       })
       .catch((err) => {

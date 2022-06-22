@@ -5,8 +5,9 @@ class SocketServer {
   public socket: Socket | null = null;
   public isLoading: boolean = false;
   public isLoadedSocket: boolean = false;
+  public isConnectDB: boolean = false;
 
-  public connect (url: string): Promise<Socket<DefaultEventsMap, DefaultEventsMap>> {
+  public connect(url: string): Promise<Socket<DefaultEventsMap, DefaultEventsMap>> {
     return new Promise((resolve, reject) => {
       this.socket = io(url)
       if (!this.socket) return reject
@@ -24,6 +25,17 @@ class SocketServer {
         reject(err)
       })
     })
+  }
+
+  public async checkStatusDB(): Promise<Boolean> {
+    return new Promise((rs, rj) => {
+      if (this.socket) {
+        this.socket.emit('check_status_db');
+        this.socket.on("check_status_db_success", (statusDB) => rs(statusDB))
+        this.socket.on("check_status_db_error", (statusDB) => rj(statusDB))
+      }
+      else rj(false)
+    });
   }
 }
 

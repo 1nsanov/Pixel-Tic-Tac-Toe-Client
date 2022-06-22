@@ -1,7 +1,7 @@
 <template>
   <div class="base-layout">
     <header-layout />
-    <content-layout>
+    <content-layout v-if="isLoadedServer">
       <router-view />
     </content-layout>
     <!-- <footer-layout /> -->
@@ -24,15 +24,29 @@ import socketService from "@/api/services/socketService";
   },
 })
 export default class BaseLayout extends Vue {
-  created(){
-    this.Timeout();
+  isLoading: boolean = false;
+  isLoadedSocket: boolean = false;
+  isConnectDB: boolean = false;
+
+  async created() {
+    await this.Timeout();
   }
 
-  Timeout(){
-    const interval = setInterval(() => {
-      console.log(socketService.isLoading, socketService.isLoadedSocket);
-      if(socketService.isLoading) clearInterval(interval)
-    }, 50)
+  async Timeout() {
+    const interval = setInterval(async () => {
+      this.isLoading = socketService.isLoading;
+      this.isLoadedSocket = socketService.isLoadedSocket;
+      await socketService
+        .checkStatusDB()
+        .then((res: any) => (this.isConnectDB = res.statusDB))
+        .catch((err) => console.log(err));
+      console.log(socketService.isLoading, socketService.isLoadedSocket, this.isConnectDB);
+      if (this.isLoadedServer) clearInterval(interval);
+    }, 100);
+  }
+
+  get isLoadedServer(): boolean {
+    return this.isLoading && this.isLoadedSocket && this.isConnectDB;
   }
 }
 </script>
@@ -46,8 +60,8 @@ body {
   color: #fff;
   width: 100%;
   min-height: 100vh;
-  display:flex; 
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(
     63.18deg,
     #0f2027 0%,

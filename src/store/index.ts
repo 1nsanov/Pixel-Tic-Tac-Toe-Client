@@ -3,7 +3,7 @@ import AuthUser from '../api/services/authService/models/AuthUser'
 
 export default createStore({
   state: {
-    AuthUser: new AuthUser(),
+    AuthUser: null,
 
     isInRoom: false,
     playerSymbol: 'x',
