@@ -1,4 +1,4 @@
-export default class AuthUser{
+export default class AuthUser {
   UserId: number = 0;
   Nickname: string = "";
   Password: string = "";
@@ -9,4 +9,8 @@ export default class AuthUser{
   Score: number = 0;
   StatusOnline: boolean = false;
   DataRegister: string = "";
+
+  constructor(obj?: Partial<AuthUser>) {
+    if (obj) Object.assign(this, obj);
+  }
 }

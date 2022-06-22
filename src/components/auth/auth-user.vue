@@ -58,13 +58,14 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { Prop } from "vue-property-decorator";
+import { Prop, Watch } from "vue-property-decorator";
 import IUserForm from "../../interfaces/IUserForm"
 @Options({
   name: "auth-user",
 })
 export default class AuthUser extends Vue {
   @Prop({ type: Boolean, default: false }) isLogin!: boolean;
+  @Prop({ type: String, default: null}) errMsg!: string;
 
   title = "Registration";
   textButton = "Registration";
@@ -74,6 +75,11 @@ export default class AuthUser extends Vue {
 
   nickname = "";
   password = "";
+
+  @Watch('errMsg')
+  onUpdateErrMsg(){
+    this.errorMsg = this.errMsg;
+  }
 
   created() {
     if (this.isLogin) {
@@ -158,10 +164,7 @@ export default class AuthUser extends Vue {
       .auth-user_form_content_error-msg {
         font-size: 16px;
         line-height: 13px;
-        background: linear-gradient(180deg, #ffffff 0%, #ff6363 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #F05353;
         padding: 7px 0 7px 0;
       }
       .auth-user_form_content_confirm {

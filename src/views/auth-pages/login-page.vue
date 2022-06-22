@@ -1,13 +1,15 @@
 <template>
   <div class="registration-page">
-    <auth-user @confirm="confirm" :isLogin="true"/>
+    <auth-user @confirm="confirm" :errMsg="errMsg" :isLogin="true" />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import authService from "@/api/services/authService";
+import socketService from "@/api/services/socketService";
 import AuthUser from "../../components/auth/auth-user.vue";
-import IUserForm from "../../interfaces/IUserForm";
+import IUserForm from "@/interfaces/IUserForm";
 
 @Options({
   name: "login-page",
@@ -16,9 +18,24 @@ import IUserForm from "../../interfaces/IUserForm";
   },
 })
 export default class LoginPage extends Vue {
+  errMsg: string = "";
 
-  confirm(user: IUserForm){
-    console.log("login user: ", user);
+  async confirm(user: IUserForm) {
+    const socket = socketService.socket;
+    if (!socket) return;
+    console.log(user);
+
+    await authService
+      .userLogin(socket, user)
+      .then((res) => {
+        this.$store.state.AuthUser = res;
+        console.log(this.$store.state.AuthUser);
+        this.$router.push({ name: "lobbi" });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.errMsg = err.error;
+      });
   }
 }
 </script>

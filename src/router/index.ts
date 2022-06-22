@@ -3,6 +3,7 @@ import BaseLayout from '../components/layouts/base-layout.vue'
 import HomePage from "../views/home-page.vue"
 import RegistrationPage from "../views/auth-pages/registration-page.vue"
 import LoginPage from "../views/auth-pages/login-page.vue"
+import LobbiPage from "../views/lobbi-page.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'login',
         path: '/login',
         component: LoginPage,
+      },
+      {
+        name: 'lobbi',
+        path: '/lobbi',
+        component: LobbiPage,
       }
     ],
   }

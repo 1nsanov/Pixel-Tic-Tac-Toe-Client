@@ -32,7 +32,7 @@ export default class BaseLayout extends Vue {
     const interval = setInterval(() => {
       console.log(socketService.isLoading, socketService.isLoadedSocket);
       if(socketService.isLoading) clearInterval(interval)
-    }, 250)
+    }, 50)
   }
 }
 </script>
