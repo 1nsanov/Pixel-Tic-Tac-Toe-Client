@@ -40,4 +40,14 @@ const router = createRouter({
   routes
 })
 
+router.afterEach((to, from, next) => {
+  console.log('before each', to)
+  const currentUser = localStorage.getItem('authUser')
+  console.log(currentUser);
+  if (!currentUser) {
+    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register') location.href = '/'
+    return;
+  }
+})
+
 export default router

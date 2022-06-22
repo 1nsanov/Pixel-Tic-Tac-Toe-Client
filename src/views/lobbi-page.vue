@@ -16,6 +16,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class LoginPage extends Vue {
   exit() {
+    localStorage.removeItem("authUser")
     this.$router.push({ path: "/" });
   }
 }

@@ -27,8 +27,7 @@ export default class LoginPage extends Vue {
     await authService
       .userLogin(socket, user)
       .then((res) => {
-        this.$store.state.AuthUser = res;
-        console.log("Current user: ", this.$store.state.AuthUser);
+        localStorage.setItem("authUser", JSON.stringify(res));
         this.$router.push({ name: "lobbi" });
       })
       .catch((err) => {
