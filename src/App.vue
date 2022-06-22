@@ -9,5 +9,4 @@ export default class AppComponent extends Vue {}
 </script>
 
 <style lang="less">
-
 </style>

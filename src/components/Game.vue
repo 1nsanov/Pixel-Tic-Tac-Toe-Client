@@ -24,8 +24,8 @@
 import { Vue } from "vue-class-component";
 import { Watch } from "vue-property-decorator";
 import { IPlayMatrix } from "../interfaces/IPlayMatrix";
-import gameService from "../services/gameService";
-import socketService from "../services/socketService";
+import gameService from "../api/services/gameService";
+import socketService from "../api/services/socketService";
 import IStartGame from "../interfaces/IStartGame";
 import { watchEffect } from "vue";
 

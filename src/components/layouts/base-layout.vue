@@ -13,6 +13,7 @@ import { Options, Vue } from "vue-class-component";
 import HeaderLayout from "./header-layout.vue";
 import ContentLayout from "./content-layout.vue";
 import FooterLayout from "./footer-layout.vue";
+import socketService from "@/api/services/socketService";
 
 @Options({
   name: "base-layout",
@@ -22,7 +23,18 @@ import FooterLayout from "./footer-layout.vue";
     FooterLayout,
   },
 })
-export default class BaseLayout extends Vue {}
+export default class BaseLayout extends Vue {
+  created(){
+    this.Timeout();
+  }
+
+  Timeout(){
+    const interval = setInterval(() => {
+      console.log(socketService.isLoading, socketService.isLoadedSocket);
+      if(socketService.isLoading) clearInterval(interval)
+    }, 250)
+  }
+}
 </script>
 
 <style lang="less">

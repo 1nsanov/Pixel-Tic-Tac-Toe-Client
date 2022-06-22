@@ -8,9 +8,9 @@
 import { Options, Vue } from "vue-class-component";
 import JoinRoom from "../components/JoinRoom.vue";
 import Game from "../components/Game.vue";
-import socketService from "../services/socketService";
-import authService from "../services/authService";
-import IUserModel from "../services/authService/models/IUserModel";
+import socketService from "../api/services/socketService";
+import authService from "../api/services/authService";
+import IUserModel from "../api/services/authService/models/IUserModel";
 
 @Options({
   components: {

@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
-import socketService from "../services/socketService";
-import gameService from "../services/gameService";
+import socketService from "../api/services/socketService";
+import gameService from "../api/services/gameService";
 
 export default class JoinRoom extends Vue {
 

@@ -1,4 +1,4 @@
-import { IPlayMatrix } from "../../interfaces/IPlayMatrix";
+import { IPlayMatrix } from "../../../interfaces/IPlayMatrix";
 import { Socket } from "socket.io-client";
 import IStartGame from "@/interfaces/IStartGame";
 
