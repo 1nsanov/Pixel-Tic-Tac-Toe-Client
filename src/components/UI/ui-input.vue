@@ -41,7 +41,10 @@ export default class UiInput extends Vue {
   .ui-input_icon{
     position: absolute;
     padding-left: 13px;
-    top: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
     img{
       width: 24px;
       height: 24px;
