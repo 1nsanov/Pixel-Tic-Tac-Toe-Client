@@ -4,7 +4,6 @@
     voluptas delectus? Est vel nulla molestias beatae quod repellendus, hic,
     doloribus odio blanditiis dolorum enim nostrum voluptate saepe vitae
     quisquam.
-    <ui-button @onClick="exit" color="red" size="medium">Exit</ui-button>
   </div>
 </template>
 
@@ -16,10 +15,6 @@ import { Options, Vue } from "vue-class-component";
   name: "login-page",
 })
 export default class LoginPage extends Vue {
-  exit() {
-    authService.clearCurrentUser();
-    this.$router.push({ path: "/" });
-  }
 }
 </script>
 
@@ -28,7 +23,6 @@ export default class LoginPage extends Vue {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  font-size: 18px;
 }
 </style>

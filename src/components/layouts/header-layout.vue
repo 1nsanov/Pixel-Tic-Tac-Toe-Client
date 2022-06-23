@@ -1,30 +1,74 @@
 <template>
   <div class="header">
-    <div class="header_container">
-      <h1 class="header_container_main-title">pixel checkers</h1>
+    <div class="header_home _container" v-if="isHome">
+      <h1 class="header_home_title">pixel checkers</h1>
+    </div>
+    <div class="header_main _container" v-else>
+      <div class="header_main_content">
+        <div class="header_main_content_logo">PIXEL CHECKERS</div>
+        <nav class="header_main_content_nav">
+          <div
+            @click="changeTab(tab.Id)"
+            class="header_main_content_nav_item"
+            :class="{ active: tab.Id === currentTab }"
+            v-for="tab in tabs"
+            :key="tab.Id"
+          >
+            {{ tab.Name }}
+          </div>
+        </nav>
+        <div class="header_main_content_profile" @click="logout">exit</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import authService from "@/api/services/authService";
 import { Options, Vue } from "vue-class-component";
+import ITabModel from "../../interfaces/ITabModel";
 @Options({
   name: "header-layout",
 })
-export default class HeaderLayout extends Vue {}
+export default class HeaderLayout extends Vue {
+  tabs: ITabModel[] = [
+    { Id: 1, Name: "Home" },
+    { Id: 2, Name: "Leaderboard" },
+    { Id: 3, Name: "About" },
+  ];
+  currentTab = 1;
+
+  get isHome(): boolean {
+    return (
+      this.$route.name === "home" ||
+      this.$route.name === "login" ||
+      this.$route.name === "register"
+    );
+  }
+
+  changeTab(id: number){
+    this.currentTab = id;
+  }
+
+  logout(){
+    authService.logout();
+  }
+}
 </script>
 
 <style lang="less">
 .header {
   width: 100%;
-  .header_container {
+  ._container {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .header_home {
     padding: 50px 15px 0 15px;
     text-decoration: underline;
-    color: #bdffe7 ;
-    .header_container_main-title {
+    color: #bdffe7;
+    .header_home_title {
       text-align: center;
       font-size: 96px;
       line-height: 81px;
@@ -42,9 +86,69 @@ export default class HeaderLayout extends Vue {}
       // text-fill-color: transparent;
     }
     @media screen and (max-width: 650px) {
-      .header_container_main-title {
+      .header_home_title {
         font-size: 64px;
         line-height: 54px;
+      }
+    }
+  }
+  .header_main {
+    height: 100px;
+    background: linear-gradient(
+      63.18deg,
+      #0f2027 0%,
+      #203a43 49.48%,
+      #2c5364 100%
+    );
+    box-shadow: 0px 2px 100px 10px rgba(0, 0, 0, 0.7);
+    .header_main_content {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      .header_main_content_logo {
+        width: 100px;
+      }
+      .header_main_content_nav {
+        display: flex;
+        max-width: 994px;
+        padding: 0 15px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        .header_main_content_nav_item {
+          flex: 0 0 33.333%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          cursor: pointer;
+          font-size: 40px;
+          transition: all ease 0.3s;
+          color: #ffffff;
+          border-bottom: 6px solid #ffffff;
+        }
+        .header_main_content_nav_item:hover {
+          font-size: 44px;
+          color: #f1ffdf;
+          border-bottom: 6px solid #f1ffdf;
+        }
+        .active {
+          color: #93ee62 !important;
+          border-bottom: 6px solid #93ee62 !important;
+        }
+      }
+
+      .header_main_content_profile {
+        display: flex;
+        justify-content: end;
+        width: 100px;
+        cursor: pointer;
+      }
+      @media screen and (max-width: 994px) {
+        padding: 0 15px;
       }
     }
   }

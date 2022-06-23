@@ -1,3 +1,4 @@
+import router from "@/router";
 import { Socket } from "socket.io-client";
 import AuthUser from "./models/AuthUser"
 import IUserLogin from "./models/IUserLogin";
@@ -56,6 +57,11 @@ class authService {
   public clearCurrentUser(){
     localStorage.removeItem("authUser")
     this.getCurrentUser();
+  }
+
+  public logout(){
+    this.clearCurrentUser();
+    router.push({ path: "/" });
   }
 }
 
