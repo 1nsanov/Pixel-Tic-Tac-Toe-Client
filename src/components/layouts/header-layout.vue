@@ -40,17 +40,30 @@ export default class HeaderLayout extends Vue {
 
   get isHome(): boolean {
     return (
-      this.$route.name === "home" ||
+      this.$route.name === "start" ||
       this.$route.name === "login" ||
       this.$route.name === "register"
     );
   }
 
-  changeTab(id: number){
+  changeTab(id: number) {
     this.currentTab = id;
+    switch (id) {
+      case 1:
+        if(this.$route.name !== "home") this.$router.push({ name: "home"})
+        break;
+      case 2:
+        if(this.$route.name !== "leaderboard") this.$router.push({ name: "leaderboard"})
+        break;
+      case 3:
+        if(this.$route.name !== "about") this.$router.push({ name: "about"})
+        break;
+      default:
+        break;
+    }
   }
 
-  logout(){
+  logout() {
     authService.logout();
   }
 }
@@ -101,6 +114,9 @@ export default class HeaderLayout extends Vue {
       #2c5364 100%
     );
     box-shadow: 0px 2px 100px 10px rgba(0, 0, 0, 0.7);
+    @media screen and (max-width: 994px) {
+      height: 75px;
+    }
     .header_main_content {
       display: flex;
       width: 100%;
@@ -129,15 +145,26 @@ export default class HeaderLayout extends Vue {
           transition: all ease 0.3s;
           color: #ffffff;
           border-bottom: 6px solid #ffffff;
+          @media screen and (max-width: 994px) {
+            font-size: 30px;
+            border-bottom: 4px solid #ffffff;
+          }
         }
         .header_main_content_nav_item:hover {
           font-size: 44px;
           color: #f1ffdf;
           border-bottom: 6px solid #f1ffdf;
+          @media screen and (max-width: 994px) {
+            font-size: 33px;
+            border-bottom: 4px solid #f1ffdf;
+          }
         }
         .active {
           color: #93ee62 !important;
           border-bottom: 6px solid #93ee62 !important;
+          @media screen and (max-width: 994px) {
+            border-bottom: 4px solid #93ee62 !important;
+          }
         }
       }
 

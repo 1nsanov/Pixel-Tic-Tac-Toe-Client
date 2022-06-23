@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import BaseLayout from '../components/layouts/base-layout.vue'
-import HomePage from "../views/home-page.vue"
+import StartPage from "../views/start-page.vue"
 import RegistrationPage from "../views/auth-pages/registration-page.vue"
 import LoginPage from "../views/auth-pages/login-page.vue"
-import LobbiPage from "../views/lobbi-page.vue"
+import HomePage from "../views/tabs-pages/home-page.vue"
+import LeaderboardPage from "../views/tabs-pages/leaderboard-page.vue"
+import AboutPage from "../views/tabs-pages/about-page.vue"
 import authService from '@/api/services/authService'
 
 const routes: Array<RouteRecordRaw> = [
@@ -13,9 +15,9 @@ const routes: Array<RouteRecordRaw> = [
     component: BaseLayout,
     children: [
       {
-        name: 'home',
+        name: 'start',
         path: '/',
-        component: HomePage,
+        component: StartPage,
       },
       {
         name: 'register',
@@ -28,9 +30,19 @@ const routes: Array<RouteRecordRaw> = [
         component: LoginPage,
       },
       {
-        name: 'lobbi',
-        path: '/lobbi',
-        component: LobbiPage,
+        name: 'home',
+        path: '/home',
+        component: HomePage,
+      },
+      {
+        name: 'leaderboard',
+        path: '/leaderboard',
+        component: LeaderboardPage,
+      },
+      {
+        name: 'about',
+        path: '/about',
+        component: AboutPage,
       }
     ],
   }

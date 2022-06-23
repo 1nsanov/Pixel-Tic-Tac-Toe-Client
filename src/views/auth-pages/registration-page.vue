@@ -32,7 +32,7 @@ export default class RegistrationPage extends Vue {
       .userRegister(socket, newUser)
       .then((res) => {
         authService.setCurrentUser(res);
-        this.$router.push({ name: "lobbi" });
+        this.$router.push({ name: "home" });
       })
       .catch((err) => {
         console.log(err);
