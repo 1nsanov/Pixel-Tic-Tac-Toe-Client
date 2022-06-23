@@ -31,7 +31,7 @@ export default class RegistrationPage extends Vue {
     await authService
       .userRegister(socket, newUser)
       .then((res) => {
-        localStorage.setItem("authUser", JSON.stringify(res));
+        authService.setCurrentUser(res);
         this.$router.push({ name: "lobbi" });
       })
       .catch((err) => {

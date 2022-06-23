@@ -3,6 +3,8 @@ import AuthUser from "./models/AuthUser"
 import IUserLogin from "./models/IUserLogin";
 
 class authService {
+  public currentUser: AuthUser | null = null;
+
   public async userRegister(socket: Socket, authUser: AuthUser): Promise<AuthUser> {
     return new Promise((rs, rj) => {
       socket.emit("user_register", {
@@ -35,6 +37,25 @@ class authService {
       socket.on("user_login_success", (authUser: AuthUser) => rs(authUser));
       socket.on("user_login_error", (err) => rj(err));
     })
+  }
+
+  public setCurrentUser(authUser: AuthUser) {
+    this.clearCurrentUser();
+    localStorage.setItem("authUser", JSON.stringify(authUser));
+    this.getCurrentUser();
+  }
+
+  public getCurrentUser() {
+    if(this.currentUser) return;
+    const user = localStorage.getItem('authUser')
+    if (user) this.currentUser = JSON.parse(user).user as AuthUser;
+    else this.currentUser = null;
+    console.log("Current user:", this.currentUser);
+  }
+
+  public clearCurrentUser(){
+    localStorage.removeItem("authUser")
+    this.getCurrentUser();
   }
 }
 

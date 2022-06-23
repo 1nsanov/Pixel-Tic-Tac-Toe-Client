@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+import authService from "@/api/services/authService";
 import { Options, Vue } from "vue-class-component";
 
 @Options({
@@ -16,7 +17,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class LoginPage extends Vue {
   exit() {
-    localStorage.removeItem("authUser")
+    authService.clearCurrentUser();
     this.$router.push({ path: "/" });
   }
 }

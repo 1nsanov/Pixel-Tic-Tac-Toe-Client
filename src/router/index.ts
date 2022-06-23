@@ -4,6 +4,7 @@ import HomePage from "../views/home-page.vue"
 import RegistrationPage from "../views/auth-pages/registration-page.vue"
 import LoginPage from "../views/auth-pages/login-page.vue"
 import LobbiPage from "../views/lobbi-page.vue"
+import authService from '@/api/services/authService'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,12 +41,13 @@ const router = createRouter({
   routes
 })
 
+const isHomePath = location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register'
+
 router.afterEach((to, from, next) => {
   console.log('before each', to)
-  const currentUser = localStorage.getItem('authUser')
-  console.log(currentUser);
-  if (!currentUser) {
-    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register') location.href = '/'
+  authService.getCurrentUser();
+  if (!authService.currentUser) {
+    if (isHomePath) location.href = '/'
     return;
   }
 })
