@@ -56,11 +56,14 @@ const router = createRouter({
 const isHomePath = location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register'
 
 router.afterEach((to, from, next) => {
-  console.log('before each', to)
+  // console.log('before each', to)
   authService.getCurrentUser();
   if (!authService.currentUser) {
     if (isHomePath) location.href = '/'
     return;
+  }
+  else{
+    if(location.pathname === '/') location.href = '/home'
   }
 })
 
