@@ -54,9 +54,8 @@ export default class BaseLayout extends Vue {
 <style lang="less">
 html,
 body {
-  font-family: "PlayMeGames";
+  font-family: "LightPixel";
   font-size: 16px;
-  letter-spacing: 0.05rem;
   color: #fff;
   width: 100%;
   min-height: 100vh;

@@ -48,7 +48,7 @@ export default class UiButton extends Vue {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 16px;
   font-family: inherit;
   cursor: pointer;
   border-radius: 10px;
@@ -100,18 +100,18 @@ export default class UiButton extends Vue {
   min-width: 160px;
   height: 40px;
   padding: 0 10px;
-  font-size: 20px;
+  font-size: 16px;
 }
 .medium-size {
   min-width: 200px;
   height: 50px;
   padding: 0 15px;
-  font-size: 28px;
+  font-size: 20px;
 }
 .big-size {
   min-width: 240px;
   height: 60px;
   padding: 0 20px;
-  font-size: 36px;
+  font-size: 24px;
 }
 </style>

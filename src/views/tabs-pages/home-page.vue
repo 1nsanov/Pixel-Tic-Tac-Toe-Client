@@ -19,6 +19,5 @@ export default class HomePage extends Vue {
   height: 100%;
   display: flex;
   flex-direction: column;
-  font-size: 18px;
 }
 </style>

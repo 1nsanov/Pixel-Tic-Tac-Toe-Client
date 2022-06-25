@@ -130,12 +130,12 @@ export default class AuthUser extends Vue {
 
 <style lang="less" scoped>
 .auth-user {
-  font-size: 20px;
+  font-size: 16px;
   width: 100%;
   .auth-user_title {
     text-align: center;
-    font-size: 40px;
-    line-height: 34px;
+    font-size: 32px;
+    line-height: 45px;
     margin-bottom: 10px;
   }
 
@@ -162,8 +162,8 @@ export default class AuthUser extends Vue {
         }
       }
       .auth-user_form_content_error-msg {
-        font-size: 16px;
-        line-height: 13px;
+        font-size: 14px;
+        line-height: 19px;
         color: #F05353;
         padding: 7px 0 7px 0;
       }
@@ -171,8 +171,8 @@ export default class AuthUser extends Vue {
         margin-bottom: 20px;
       }
       .auth-user_form_content_footer {
-        font-size: 16px;
-        line-height: 13px;
+        font-size: 12px;
+        line-height: 16px;
         span {
           cursor: pointer;
           transition: ease 0.3s;

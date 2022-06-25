@@ -83,7 +83,7 @@ export default class HeaderLayout extends Vue {
     color: #bdffe7;
     .header_home_title {
       text-align: center;
-      font-size: 96px;
+      font-size: 64px;
       line-height: 81px;
       text-transform: uppercase;
       text-decoration: underline;
@@ -101,7 +101,6 @@ export default class HeaderLayout extends Vue {
     @media screen and (max-width: 650px) {
       .header_home_title {
         font-size: 64px;
-        line-height: 54px;
       }
     }
   }
@@ -141,21 +140,21 @@ export default class HeaderLayout extends Vue {
           justify-content: center;
           height: 100%;
           cursor: pointer;
-          font-size: 40px;
+          font-size: 32px;
           transition: all ease 0.3s;
           color: #ffffff;
           border-bottom: 6px solid #ffffff;
           @media screen and (max-width: 994px) {
-            font-size: 30px;
+            font-size: 24px;
             border-bottom: 4px solid #ffffff;
           }
         }
         .header_main_content_nav_item:hover {
-          font-size: 44px;
+          font-size: 36px;
           color: #f1ffdf;
           border-bottom: 6px solid #f1ffdf;
           @media screen and (max-width: 994px) {
-            font-size: 33px;
+            font-size: 26px;
             border-bottom: 4px solid #f1ffdf;
           }
         }

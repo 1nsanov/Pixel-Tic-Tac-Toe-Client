@@ -55,7 +55,7 @@ export default class UiInput extends Vue {
     font-size: inherit;
     letter-spacing: inherit;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
   }
   .default-thema {
     border: 2px solid #ffffff;
