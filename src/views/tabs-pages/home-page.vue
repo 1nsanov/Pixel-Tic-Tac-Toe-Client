@@ -45,7 +45,7 @@ export default class HomePage extends Vue {
     if (joined) {
       console.log("Joined room ", this.roomId);
       this.$store.state.isInRoom = true;
-      this.$router.push({ name: "game", query: { id: this.roomId } });
+      this.$router.push({ name: "game", params: { id: this.roomId } });
     } else {
       console.log("Room not found");
     }

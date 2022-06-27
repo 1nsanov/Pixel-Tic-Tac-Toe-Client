@@ -6,7 +6,10 @@
     <div class="header_main _container" v-else>
       <div class="header_main_content">
         <div class="header_main_content_logo">PIXEL CHECKERS</div>
-        <nav class="header_main_content_nav">
+        <div class="header_main_content_game" v-if="$store.state.isGameStarted">
+          We play!
+        </div>
+        <nav class="header_main_content_nav" v-else>
           <div
             @click="changeTab(tab.Id)"
             class="header_main_content_nav_item"

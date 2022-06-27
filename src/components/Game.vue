@@ -180,7 +180,6 @@ export default class JoinRoom extends Vue {
 .game-container {
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 .row-container {
   width: 100%;

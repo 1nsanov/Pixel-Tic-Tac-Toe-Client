@@ -15,7 +15,6 @@ export default class GameList extends Vue {}
 
 <style lang="less">
 .game-list {
-  position: relative;
   display: flex;
   flex-direction: column;
   padding: 20px;

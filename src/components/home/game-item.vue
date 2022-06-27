@@ -13,7 +13,6 @@ export default class GameItem extends Vue {}
 
 <style lang="less">
 .game-item {
-  position: relative;
   display: flex;
   flex-direction: column;
   padding: 15px;

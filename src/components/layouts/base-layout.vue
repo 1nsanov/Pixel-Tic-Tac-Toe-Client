@@ -1,5 +1,8 @@
 <template>
   <div class="base-layout">
+    <!-- <div class="game_start" v-if="!$store.state.isGameStarted && $store.state.isInRoom">
+      Waiting connect other player...
+    </div> -->
     <header-layout />
     <content-layout v-if="isLoadedServer">
       <router-view />
@@ -72,5 +75,17 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  .game_start {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 60px;
+    z-index: 100;
+  }
 }
 </style>
