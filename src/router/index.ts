@@ -6,6 +6,7 @@ import LoginPage from "../views/auth-pages/login-page.vue"
 import HomePage from "../views/tabs-pages/home-page.vue"
 import LeaderboardPage from "../views/tabs-pages/leaderboard-page.vue"
 import AboutPage from "../views/tabs-pages/about-page.vue"
+import GamePage from "../views/game-pages/game-page.vue"
 import authService from '@/api/services/authService'
 
 const routes: Array<RouteRecordRaw> = [
@@ -43,7 +44,12 @@ const routes: Array<RouteRecordRaw> = [
         name: 'about',
         path: '/about',
         component: AboutPage,
-      }
+      },
+      {
+        name: 'game',
+        path: '/game',
+        component: GamePage,
+      },
     ],
   }
 ]
