@@ -7,26 +7,7 @@
       Waiting...
     </div> -->
     <div class="game_content">
-      <div class="checker white_checker" style="display: none"></div>
-      <div class="checker black_checker" style="display: none"></div>
-
-      <div class="square" style="display: none" id="ht"></div>
-      <div class="black_background" id="black_background"></div>
-
-      <div class="score" id="score">
-        <br />
-      </div>
-      <div class="table" id="table">
-        <div class="checker white_checker" v-for="item in 12" :key="item"></div>
-        <div class="checker black_checker" v-for="item in 12" :key="item"></div>
-
-        <div
-          class="square"
-          v-for="item in 64"
-          :key="item"
-          :class="{ black_square: setColorSquare(item), white_square: !setColorSquare(item) }"
-        ></div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -69,17 +50,6 @@ export default class GamePage extends Vue {
         this.setPlayerSymbol(options.symbol);
         this.setPlayerTurn(options.start);
       });
-    }
-  }
-
-  setColorSquare(index: number){
-    let numberRow = Math.ceil(index / 8);
-    console.log(numberRow);
-    if(numberRow % 2 === 0){
-      return index % 2 === 0
-    }
-    else{
-      return index % 2 === 1
     }
   }
 }

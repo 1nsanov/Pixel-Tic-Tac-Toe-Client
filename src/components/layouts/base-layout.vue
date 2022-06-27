@@ -1,8 +1,8 @@
 <template>
   <div class="base-layout">
-    <!-- <div class="game_start" v-if="!$store.state.isGameStarted && $store.state.isInRoom">
+    <div class="game_start" v-if="!$store.state.isGameStarted && $store.state.isInRoom">
       Waiting connect other player...
-    </div> -->
+    </div>
     <header-layout />
     <content-layout v-if="isLoadedServer">
       <router-view />
@@ -59,6 +59,7 @@ html,
 body {
   font-family: "LightPixel";
   font-size: 16px;
+  line-height: 20px;
   color: #fff;
   width: 100%;
   min-height: 100vh;

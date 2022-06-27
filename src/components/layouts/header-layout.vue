@@ -37,9 +37,12 @@ export default class HeaderLayout extends Vue {
   tabs: ITabModel[] = [
     { Id: 1, Name: "Home" },
     { Id: 2, Name: "Leaderboard" },
-    { Id: 3, Name: "About" },
   ];
   currentTab = 1;
+
+  created(){
+    if(this.$route.name === "leaderboard") this.currentTab = 2;
+  }
 
   get isHome(): boolean {
     return (
@@ -58,9 +61,9 @@ export default class HeaderLayout extends Vue {
       case 2:
         if(this.$route.name !== "leaderboard") this.$router.push({ name: "leaderboard"})
         break;
-      case 3:
-        if(this.$route.name !== "about") this.$router.push({ name: "about"})
-        break;
+      // case 3:
+      //   if(this.$route.name !== "about") this.$router.push({ name: "about"})
+      //   break;
       default:
         break;
     }
@@ -137,7 +140,7 @@ export default class HeaderLayout extends Vue {
         height: 100%;
         align-items: center;
         .header_main_content_nav_item {
-          flex: 0 0 33.333%;
+          flex: 0 0 50%;
           display: flex;
           align-items: center;
           justify-content: center;

@@ -47,8 +47,8 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         name: 'game',
-        // path: '/game/room?:id',
-        path: '/game',
+        path: '/game/room?:id',
+        // path: '/game',
         component: GamePage,
       },
     ],
