@@ -86,7 +86,7 @@ export default class LeaderboardPage extends Vue {
   .leaderboard_list {
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(255, 255, 255);
+    border: 4px solid rgb(255, 255, 255);
     background: linear-gradient(
       63.18deg,
       #0f2027 0%,
