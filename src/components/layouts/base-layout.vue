@@ -88,6 +88,7 @@ body {
     justify-content: center;
     text-align: center;
     font-size: 60px;
+    line-height: 75px;
     z-index: 100;
   }
 }

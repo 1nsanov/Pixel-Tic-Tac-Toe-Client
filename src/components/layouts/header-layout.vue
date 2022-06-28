@@ -5,9 +5,13 @@
     </div>
     <div class="header_main _container" v-else>
       <div class="header_main_content">
-        <div class="header_main_content_logo">pixel tic-tac-toe</div>
+        <div class="header_main_content_logo">
+          <img src="../../assets/icons/logo-tac-tac-toe.svg" />
+        </div>
         <div class="header_main_content_game" v-if="$store.state.isGameStarted">
-          We play!
+          {{
+            $store.state.isPlayerTurn ? "Your turn!" : "Waiting enemy's turn!"
+          }}
         </div>
         <nav class="header_main_content_nav" v-else>
           <div
@@ -20,7 +24,9 @@
             {{ tab.Name }}
           </div>
         </nav>
-        <div class="header_main_content_profile" @click="logout">exit</div>
+        <div class="header_main_content_profile" @click="logout">
+          <img src="../../assets/icons/icon-door-exit.svg" />
+        </div>
       </div>
     </div>
   </div>
@@ -40,8 +46,8 @@ export default class HeaderLayout extends Vue {
   ];
   currentTab = 1;
 
-  created(){
-    if(this.$route.name === "leaderboard") this.currentTab = 2;
+  created() {
+    if (this.$route.name === "leaderboard") this.currentTab = 2;
   }
 
   get isHome(): boolean {
@@ -56,10 +62,11 @@ export default class HeaderLayout extends Vue {
     this.currentTab = id;
     switch (id) {
       case 1:
-        if(this.$route.name !== "home") this.$router.push({ name: "home"})
+        if (this.$route.name !== "home") this.$router.push({ name: "home" });
         break;
       case 2:
-        if(this.$route.name !== "leaderboard") this.$router.push({ name: "leaderboard"})
+        if (this.$route.name !== "leaderboard")
+          this.$router.push({ name: "leaderboard" });
         break;
       // case 3:
       //   if(this.$route.name !== "about") this.$router.push({ name: "about"})
@@ -130,15 +137,27 @@ export default class HeaderLayout extends Vue {
       align-items: center;
       padding: 0 30px;
       .header_main_content_logo {
-        width: 100px;
+        width: 58px;
+        @media screen and (max-width: 994px) {
+          width: 48px;
+          img {
+            width: 48px;
+          }
+        }
+      }
+      .header_main_content_game {
+        font-size: 24px;
       }
       .header_main_content_nav {
         display: flex;
         max-width: 994px;
-        padding: 0 15px;
+        padding: 0 30px;
         width: 100%;
         height: 100%;
         align-items: center;
+        @media screen and (max-width: 994px) {
+          padding: 0 15px;
+        }
         .header_main_content_nav_item {
           flex: 0 0 50%;
           display: flex;
@@ -176,8 +195,14 @@ export default class HeaderLayout extends Vue {
       .header_main_content_profile {
         display: flex;
         justify-content: end;
-        width: 100px;
+        width: 58px;
         cursor: pointer;
+        @media screen and (max-width: 994px) {
+          width: 48px;
+          img {
+            width: 48px;
+          }
+        }
       }
       @media screen and (max-width: 994px) {
         padding: 0 15px;

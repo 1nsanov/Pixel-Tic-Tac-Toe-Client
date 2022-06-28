@@ -1,12 +1,5 @@
 <template>
   <div class="game-container">
-    <h2 v-if="!$store.state.isGameStarted">
-      Waiting for other player to join to start the game
-    </h2>
-    <div
-      class="player-stopper"
-      v-if="!$store.state.isGameStarted || !$store.state.isPlayerTurn"
-    ></div>
     <div class="row-container" v-for="(row, rowIdx) in matrix">
       <div
         class="cell"
@@ -29,7 +22,7 @@ import socketService from "../api/services/socketService";
 import IStartGame from "../interfaces/IStartGame";
 import { watchEffect } from "vue";
 
-export default class JoinRoom extends Vue {
+export default class GameTicTacToe extends Vue {
   matrix: IPlayMatrix = [
     [null, null, null],
     [null, null, null],
@@ -37,7 +30,7 @@ export default class JoinRoom extends Vue {
   ];
   result: [boolean, boolean] = [false, false];
 
-  created(){
+  created() {
     watchEffect(() => {
       this.handleGameUpdate();
       this.handleGameStart();
@@ -60,12 +53,13 @@ export default class JoinRoom extends Vue {
   }
 
   updateGameMatrix(column: number, row: number, value: "x" | "o") {
+    if (!this.$store.state.isPlayerTurn) return;
     const newMatrix = [...this.matrix];
     if (newMatrix[row][column] === null) {
       newMatrix[row][column] = value;
       this.setMatrix(newMatrix);
     }
-    if (socketService.socket){
+    if (socketService.socket) {
       gameService.updateGame(socketService.socket, newMatrix);
       this.setPlayerTurn(false);
     }
@@ -86,19 +80,19 @@ export default class JoinRoom extends Vue {
         console.log("handleGameStart", options);
         this.setGameStarted(true);
         this.setPlayerSymbol(options.symbol);
-        this.setPlayerTurn(options.start);
+        this.setPlayerTurn(!options.start);
       });
     }
   }
 
-  handleGameWin(){
-    if(socketService.socket){
+  handleGameWin() {
+    if (socketService.socket) {
       gameService.onGameWin(socketService.socket, (message) => {
-        this.setPlayerTurn(false)
+        this.setPlayerTurn(false);
         setTimeout(() => {
-          alert(message)
-        }, 250)
-      })
+          alert(message);
+        }, 250);
+      });
     }
   }
 
@@ -109,16 +103,20 @@ export default class JoinRoom extends Vue {
     this.printMessageWin();
   }
 
-  checkGameState(matrix: IPlayMatrix): [boolean, boolean]{
+  checkGameState(matrix: IPlayMatrix): [boolean, boolean] {
     for (let i = 0; i < matrix.length; i++) {
       let row = [];
       for (let j = 0; j < matrix[i].length; j++) {
         row.push(matrix[i][j]);
       }
 
-      if (row.every((value) => value && value === this.$store.state.playerSymbol)) {
+      if (
+        row.every((value) => value && value === this.$store.state.playerSymbol)
+      ) {
         return [true, false];
-      } else if (row.every((value) => value && value !== this.$store.state.playerSymbol)) {
+      } else if (
+        row.every((value) => value && value !== this.$store.state.playerSymbol)
+      ) {
         return [false, true];
       }
     }
@@ -129,21 +127,31 @@ export default class JoinRoom extends Vue {
         column.push(matrix[j][i]);
       }
 
-      if (column.every((value) => value && value === this.$store.state.playerSymbol)) {
+      if (
+        column.every(
+          (value) => value && value === this.$store.state.playerSymbol
+        )
+      ) {
         return [true, false];
-      } else if (column.every((value) => value && value !== this.$store.state.playerSymbol)) {
+      } else if (
+        column.every(
+          (value) => value && value !== this.$store.state.playerSymbol
+        )
+      ) {
         return [false, true];
       }
     }
 
     if (matrix[1][1]) {
       if (matrix[0][0] === matrix[1][1] && matrix[2][2] === matrix[1][1]) {
-        if (matrix[1][1] === this.$store.state.playerSymbol) return [true, false];
+        if (matrix[1][1] === this.$store.state.playerSymbol)
+          return [true, false];
         else return [false, true];
       }
 
       if (matrix[2][0] === matrix[1][1] && matrix[0][2] === matrix[1][1]) {
-        if (matrix[1][1] === this.$store.state.playerSymbol) return [true, false];
+        if (matrix[1][1] === this.$store.state.playerSymbol)
+          return [true, false];
         else return [false, true];
       }
     }
@@ -154,10 +162,10 @@ export default class JoinRoom extends Vue {
     }
 
     return [false, false];
-  };
+  }
 
   printMessageWin() {
-    let text = ""
+    let text = "";
     if (this.result[0]) {
       text = "You won!";
     } else if (this.result[1]) {
@@ -167,10 +175,14 @@ export default class JoinRoom extends Vue {
     }
 
     if (text !== "" && socketService.socket) {
-      gameService.gameWin(socketService.socket, text)
+      gameService.gameWin(socketService.socket, text);
       setTimeout(() => {
-        alert(text)
-      }, 250)
+        alert(text);
+        this.setGameStarted(false);
+        this.$store.state.isInRoom = false;
+        this.$router.push({ path: "/home" });
+        text = "";
+      }, 100);
     }
   }
 }
@@ -180,49 +192,39 @@ export default class JoinRoom extends Vue {
 .game-container {
   display: flex;
   flex-direction: column;
-}
-.row-container {
-  width: 100%;
-  display: flex;
-}
-.cell {
-  width: 13em;
-  height: 9em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  cursor: pointer;
-  border-top: 3px solid rgb(18, 132, 225);
-  border-left: 3px solid rgb(18, 132, 225);
-  border-bottom: 3px solid rgb(18, 132, 225);
-  border-right: 3px solid rgb(18, 132, 225);
-  transition: all 270ms ease-in-out;
-  &:hover {
-    background-color: rgba(18, 132, 225, 20%);
-  }
-}
-.player-stopper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: null;
-  left: null;
-  z-index: 99;
-  cursor: default;
-}
-.X {
-  font-size: 100px;
-  color: rgb(18, 132, 225);
-  &::after {
-    content: "X";
-  }
-}
-.O {
-  font-size: 100px;
-  color: rgb(18, 132, 225);
-  &::after {
-    content: "O";
+  .row-container {
+    width: 100%;
+    display: flex;
+    .cell {
+      width: 10em;
+      height: 9em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 3px solid rgb(255, 255, 255);
+      transition: all 270ms ease-in-out;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.096);
+      }
+    }
+    .X {
+      font-size: 100px;
+      color: rgb(255, 255, 255);
+      &::after {
+        content: "X";
+        padding-left: 11px;
+      }
+    }
+    .O {
+      font-size: 100px;
+      color: rgb(255, 255, 255);
+      &::after {
+        content: "O";
+        padding-left: 11px;
+      }
+    }
   }
 }
 </style>
