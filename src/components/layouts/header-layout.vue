@@ -21,7 +21,17 @@
             v-for="tab in tabs"
             :key="tab.Id"
           >
-            {{ tab.Name }}
+            <span>{{ tab.Name }}</span>
+            <img
+              v-if="tab.Id === 1"
+              src="../../assets/icons/icon-home-white.svg"
+              alt=""
+            />
+            <img
+              v-if="tab.Id === 2"
+              src="../../assets/icons/icon-stats-bars-white.svg"
+              alt=""
+            />
           </div>
         </nav>
         <div class="header_main_content_profile" @click="logout">
@@ -42,7 +52,10 @@ import ITabModel from "../../interfaces/ITabModel";
 export default class HeaderLayout extends Vue {
   tabs: ITabModel[] = [
     { Id: 1, Name: "Home" },
-    { Id: 2, Name: "Leaderboard" },
+    {
+      Id: 2,
+      Name: "Leaderboard",
+    },
   ];
   currentTab = 1;
 
@@ -147,6 +160,13 @@ export default class HeaderLayout extends Vue {
       }
       .header_main_content_game {
         font-size: 24px;
+        padding: 0 30px;
+        text-align: center;
+        @media screen and (max-width: 994px) {
+          padding: 0 15px;
+          font-size: 20px;
+          line-height: 24px;
+        }
       }
       .header_main_content_nav {
         display: flex;
@@ -166,17 +186,28 @@ export default class HeaderLayout extends Vue {
           height: 100%;
           cursor: pointer;
           font-size: 32px;
-          transition: all ease 0.3s;
+          transition: 0.3s ease-in-out;
           color: #ffffff;
           border-bottom: 6px solid #ffffff;
+          img {
+            width: 32px;
+            display: none;
+          }
           @media screen and (max-width: 994px) {
             font-size: 24px;
             border-bottom: 4px solid #ffffff;
           }
+          @media screen and (max-width: 600px) {
+            span {
+              display: none;
+            }
+            img {
+              display: block;
+            }
+          }
         }
         .header_main_content_nav_item:hover {
           font-size: 36px;
-          color: #f1ffdf;
           border-bottom: 6px solid #f1ffdf;
           @media screen and (max-width: 994px) {
             font-size: 26px;
@@ -184,10 +215,12 @@ export default class HeaderLayout extends Vue {
           }
         }
         .active {
-          color: #93ee62 !important;
           border-bottom: 6px solid #93ee62 !important;
           @media screen and (max-width: 994px) {
             border-bottom: 4px solid #93ee62 !important;
+            img {
+              width: 36px;
+            }
           }
         }
       }

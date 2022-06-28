@@ -213,6 +213,10 @@ export default class GameTicTacToe extends Vue {
       &:hover {
         background-color: rgba(255, 255, 255, 0.096);
       }
+      @media screen and (max-width: 510px) {
+        width: 7em;
+        height: 6em;
+      }
     }
     .X {
       font-size: 100px;
@@ -221,6 +225,12 @@ export default class GameTicTacToe extends Vue {
         content: "X";
         padding-left: 11px;
       }
+      @media screen and (max-width: 510px) {
+        font-size: 60px;
+        &::after {
+          padding-left: 5px;
+        }
+      }
     }
     .O {
       font-size: 100px;
@@ -228,6 +238,12 @@ export default class GameTicTacToe extends Vue {
       &::after {
         content: "O";
         padding-left: 11px;
+      }
+      @media screen and (max-width: 510px) {
+        font-size: 60px;
+        &::after {
+          padding-left: 5px;
+        }
       }
     }
   }
