@@ -1,4 +1,4 @@
-# Pixel-Checkers-Client
+# Pixel-tic-tac-toe
 
 ## Project setup
 ```

@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <div class="header_home _container" v-if="isHome">
-      <h1 class="header_home_title">pixel checkers</h1>
+      <h1 class="header_home_title">pixel tic-tac-toe</h1>
     </div>
     <div class="header_main _container" v-else>
       <div class="header_main_content">
-        <div class="header_main_content_logo">PIXEL CHECKERS</div>
+        <div class="header_main_content_logo">pixel tic-tac-toe</div>
         <div class="header_main_content_game" v-if="$store.state.isGameStarted">
           We play!
         </div>

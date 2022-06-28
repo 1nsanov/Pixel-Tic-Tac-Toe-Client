@@ -7,6 +7,7 @@
     <content-layout v-if="isLoadedServer">
       <router-view />
     </content-layout>
+    <chat/>
     <!-- <footer-layout /> -->
   </div>
 </template>
@@ -17,13 +18,14 @@ import HeaderLayout from "./header-layout.vue";
 import ContentLayout from "./content-layout.vue";
 import FooterLayout from "./footer-layout.vue";
 import socketService from "@/api/services/socketService";
-
+import Chat from "../chat/chat.vue"
 @Options({
   name: "base-layout",
   components: {
     HeaderLayout,
     ContentLayout,
     FooterLayout,
+    Chat
   },
 })
 export default class BaseLayout extends Vue {

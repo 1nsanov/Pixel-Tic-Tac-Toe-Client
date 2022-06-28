@@ -1,5 +1,5 @@
 {
-  "name": "pixel-checkers",
+  "name": "pixel-tic-tac-toe",
   "version": "0.1.0",
   "private": true,
   "scripts": {

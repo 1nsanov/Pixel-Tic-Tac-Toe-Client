@@ -8,7 +8,6 @@
       />
       <ui-button size="medium" @onClick="joinGame" :disabled="isLoading">
         Create/Join game
-        <img src="../../assets/icons/board-plus.svg" alt="" />
       </ui-button>
     </div>
     <!-- <div class="home-page_game-list">
