@@ -1,13 +1,12 @@
 <template>
   <div class="base-layout">
-    <div class="game_start" v-if="!$store.state.isGameStarted && $store.state.isInRoom">
-      Waiting connect other player...
-    </div>
+    <game-start />
+    <game-end />
     <header-layout />
     <content-layout v-if="isLoadedServer">
       <router-view />
     </content-layout>
-    <chat v-if="$store.state.isGameStarted"/>
+    <chat v-if="$store.state.isGameStarted" />
     <!-- <footer-layout /> -->
   </div>
 </template>
@@ -18,14 +17,18 @@ import HeaderLayout from "./header-layout.vue";
 import ContentLayout from "./content-layout.vue";
 import FooterLayout from "./footer-layout.vue";
 import socketService from "@/api/services/socketService";
-import Chat from "../chat/chat.vue"
+import Chat from "../chat/chat.vue";
+import GameStart from "../stopers/game-start.vue";
+import GameEnd from "../stopers/game-end.vue";
 @Options({
   name: "base-layout",
   components: {
     HeaderLayout,
     ContentLayout,
     FooterLayout,
-    Chat
+    Chat,
+    GameStart,
+    GameEnd,
   },
 })
 export default class BaseLayout extends Vue {
@@ -45,7 +48,11 @@ export default class BaseLayout extends Vue {
         .checkStatusDB()
         .then((res: any) => (this.isConnectDB = res.statusDB))
         .catch((err) => console.log(err));
-      console.log(socketService.isLoading, socketService.isLoadedSocket, this.isConnectDB);
+      console.log(
+        socketService.isLoading,
+        socketService.isLoadedSocket,
+        this.isConnectDB
+      );
       if (this.isLoadedServer) clearInterval(interval);
     }, 100);
   }
@@ -78,18 +85,5 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  .game_start {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 60px;
-    line-height: 75px;
-    z-index: 100;
-  }
 }
 </style>

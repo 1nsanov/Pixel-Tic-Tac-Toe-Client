@@ -177,10 +177,9 @@ export default class GameTicTacToe extends Vue {
     if (text !== "" && socketService.socket) {
       gameService.gameWin(socketService.socket, text);
       setTimeout(() => {
-        alert(text);
+        this.$store.state.gameEndText = text;
         this.setGameStarted(false);
         this.$store.state.isInRoom = false;
-        this.$router.push({ path: "/home" });
         text = "";
       }, 100);
     }

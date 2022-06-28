@@ -1,6 +1,6 @@
 <template>
   <div class="registration-page">
-    <auth-user @confirm="confirm" :errMsg="errMsg"/>
+    <auth-user @confirm="confirm" :errMsg="errMsg" />
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default class RegistrationPage extends Vue {
       Nickname: user.Nickname,
       Password: user.Password,
       AvatarId: this.generateIntNumber(0, 4),
+      Score: 200,
       DataRegister: moment().format(),
     });
   }
