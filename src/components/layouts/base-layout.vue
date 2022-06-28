@@ -7,7 +7,7 @@
     <content-layout v-if="isLoadedServer">
       <router-view />
     </content-layout>
-    <chat/>
+    <chat v-if="$store.state.isGameStarted"/>
     <!-- <footer-layout /> -->
   </div>
 </template>

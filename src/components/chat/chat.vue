@@ -2,7 +2,9 @@
   <div class="chat">
     <div class="chat_button" v-if="!isVisibleChat" @click="changeVisible">
       <div class="chat_button_icon">
-        <div class="chat_button_icon_notification">1</div>
+        <div class="chat_button_icon_notification" v-if="countUnread > 0">
+          {{ countUnread }}
+        </div>
         <img src="../../assets/icons/icon-chat.svg" alt="" />
       </div>
     </div>
@@ -11,7 +13,7 @@
         <img src="../../assets/icons/icon-cross.svg" alt="" />
       </div>
       <div class="chat_box_messages">
-        <div class="_scroll">
+        <div id="scroll" class="_scroll">
           <div class="chat_box_messages_empty" v-if="messagesList.length === 0">
             List of messages is empty! Send message the first!
           </div>
@@ -67,9 +69,12 @@
 <script lang="ts">
 import authService from "@/api/services/authService";
 import AuthUser from "@/api/services/authService/models/AuthUser";
+import socketService from "@/api/services/socketService";
 import moment from "moment";
 import { Options, Vue } from "vue-class-component";
-import IMessage from "../../interfaces/IMessage";
+import IMessage from "../../api/services/chatService/models/IMessage";
+import chatService from "@/api/services/chatService/index";
+import { watchEffect } from "@vue/runtime-core";
 
 @Options({
   name: "chat",
@@ -79,14 +84,20 @@ export default class Chat extends Vue {
   message: string = "";
   messagesList: IMessage[] | null = null;
   currentUser: AuthUser | null | undefined;
+  countUnread: number = 0;
 
   created() {
     this.messagesList = [];
     this.currentUser = authService.currentUser;
+    watchEffect(() => {
+      this.handleSendMessage();
+    });
   }
 
   changeVisible() {
     this.isVisibleChat = !this.isVisibleChat;
+    this.countUnread = 0;
+    this.scrollBottom();
   }
 
   sendMessage() {
@@ -96,13 +107,34 @@ export default class Chat extends Vue {
       Message: this.message,
       DataSend: moment().format(),
     };
-    console.log("You send:", message);
+    if (socketService.socket)
+      chatService.sendMessage(socketService.socket, message);
     this.messagesList?.push(message);
     this.message = "";
+    this.scrollBottom();
+  }
+
+  handleSendMessage() {
+    if (socketService.socket) {
+      chatService.onSendMessage(socketService.socket, (message) => {
+        this.countUnread += 1;
+        this.messagesList?.push(message);
+        this.scrollBottom();
+      });
+    }
   }
 
   convertDate(date: string) {
     return moment(date).format("HH:mm");
+  }
+
+  scrollBottom() {
+    setTimeout(() => {
+      var element = document.getElementById("scroll");
+      if (element) {
+        element.scrollTop = element.scrollHeight - element.clientHeight;
+      }
+    }, 1);
   }
 }
 </script>
@@ -154,6 +186,9 @@ export default class Chat extends Vue {
       img {
         transform: scale(1.15);
       }
+      .chat_button_icon_notification {
+        transform: scale(1.15);
+      }
     }
   }
   .chat_box {
@@ -192,6 +227,7 @@ export default class Chat extends Vue {
           width: 100%;
           display: flex;
           flex-direction: column;
+          margin-right: 7px;
           .message-item {
             display: flex;
             flex-direction: column;
