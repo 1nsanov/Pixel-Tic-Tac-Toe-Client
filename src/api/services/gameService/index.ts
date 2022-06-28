@@ -1,6 +1,7 @@
 import { IPlayMatrix } from "../../../interfaces/IPlayMatrix";
 import { Socket } from "socket.io-client";
 import IStartGame from "@/interfaces/IStartGame";
+import ResultGame from "./models/ResultGame";
 
 class GameService {
 
@@ -29,6 +30,10 @@ class GameService {
   }
   public async onGameWin(socket: Socket, listiner: (message: string) => void) {
     socket.on("game_win", ({ message }) => listiner(message));
+  }
+
+  public async endGame(socket: Socket, resultGame: ResultGame) {
+    socket.emit("set_result_game", resultGame)
   }
 }
 

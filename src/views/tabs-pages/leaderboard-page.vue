@@ -72,7 +72,7 @@ export default class LeaderboardPage extends Vue {
     if (totalGames === 0) {
       return `0%`;
     } else {
-      return `${Math.round((totalGames / 100) * wins)}%`;
+      return `${Math.round(wins/ totalGames * 100)}%`;
     }
   }
 }

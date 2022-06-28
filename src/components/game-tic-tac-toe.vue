@@ -21,6 +21,7 @@ import gameService from "../api/services/gameService";
 import socketService from "../api/services/socketService";
 import IStartGame from "../interfaces/IStartGame";
 import { watchEffect } from "vue";
+import authService from "@/api/services/authService";
 
 export default class GameTicTacToe extends Vue {
   matrix: IPlayMatrix = [
@@ -29,6 +30,7 @@ export default class GameTicTacToe extends Vue {
     [null, null, null],
   ];
   result: [boolean, boolean] = [false, false];
+  endGame = false;
 
   created() {
     watchEffect(() => {
@@ -98,7 +100,6 @@ export default class GameTicTacToe extends Vue {
 
   @Watch("matrix", { immediate: true })
   onMatrixChanged() {
-    console.log("checkGameState");
     this.result = this.checkGameState(this.matrix);
     this.printMessageWin();
   }
@@ -165,23 +166,28 @@ export default class GameTicTacToe extends Vue {
   }
 
   printMessageWin() {
+    if (this.endGame) return;
     let text = "";
+    let won = false;
     if (this.result[0]) {
       text = "You won!";
+      won = true;
     } else if (this.result[1]) {
       text = "You lost!";
     } else if (this.result[0] && this.result[1]) {
       text = "Tie!";
     }
 
-    if (text !== "" && socketService.socket) {
+    if (text !== "" && socketService.socket && authService.currentUser) {
+      this.endGame = true;
       gameService.gameWin(socketService.socket, text);
-      setTimeout(() => {
-        this.$store.state.gameEndText = text;
-        this.setGameStarted(false);
-        this.$store.state.isInRoom = false;
-        text = "";
-      }, 100);
+      gameService.endGame(socketService.socket, {
+        UserId: authService.currentUser?.UserId,
+        IsWin: won,
+      });
+      this.$store.state.gameEndText = text;
+      this.setGameStarted(false);
+      this.$store.state.isInRoom = false;
     }
   }
 }
