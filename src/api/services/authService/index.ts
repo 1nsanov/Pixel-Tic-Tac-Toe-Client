@@ -48,8 +48,8 @@ class authService {
 
   public getCurrentUser() {
     if(this.currentUser) return;
-    const user = localStorage.getItem('authUser')
-    if (user) this.currentUser = JSON.parse(user).user as AuthUser;
+    const user = localStorage.getItem('authUser')?.trim();
+    if (!!user) this.currentUser = JSON.parse(user) as AuthUser;
     else this.currentUser = null;
     console.log("Current user:", this.currentUser);
   }

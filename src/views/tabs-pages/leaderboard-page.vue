@@ -58,8 +58,8 @@ export default class LeaderboardPage extends Vue {
         .getLeaderboard(socketService.socket)
         .then((res: any) => {
           this.leaderboard = [];
-          this.leaderboard = res.leaderboard;
-          this.leaderboard?.sort((a, b) => a.Score - b.Score);
+          this.leaderboard = (res.leaderboard as LeaderboardItem[]).filter(u => u.CountFinishedGames !== 0);
+          this.leaderboard?.sort((a, b) => b.Score - a.Score);
         })
         .catch((err) => {
           this.leaderboard = [];

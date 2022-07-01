@@ -1,5 +1,5 @@
 <template>
-  <div class="game-container">
+  <div id="game-container" class="game-container">
     <div class="row-container" v-for="(row, rowIdx) in matrix">
       <div
         class="cell"

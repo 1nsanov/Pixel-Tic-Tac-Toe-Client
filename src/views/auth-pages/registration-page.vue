@@ -23,11 +23,12 @@ export default class RegistrationPage extends Vue {
   errMsg: string = "";
 
   async confirm(user: IUserForm) {
+    this.errMsg = ""
     const socket = socketService.socket;
     if (!socket) return;
     let newUser = this.createUser(user);
     console.log(newUser);
-
+    
     await authService
       .userRegister(socket, newUser)
       .then((res) => {

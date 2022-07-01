@@ -101,12 +101,13 @@ export default class AuthUser extends Vue {
 
   validation() {
     this.errorMsg = ""
-    if (this.nickname.length >= 4 && this.password.length >= 6) {
+    if (this.nickname.length >= 4 && this.nickname.length <= 16 && this.password.length >= 6) {
       return true;
     }
     else{
       if(this.nickname.length < 4) this.errorMsg = "Nickname must be at least 4 characters\n"
       if(this.password.length < 6) this.errorMsg += "Password must be at least 6 characters\n"
+      if(this.nickname.length > 16) this.errorMsg += "Nickname must not be more than 16 characters\n"
       return false;
     }
   }

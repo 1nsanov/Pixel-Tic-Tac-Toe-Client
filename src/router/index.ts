@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw, RouterView } from 'vue-router'
 import BaseLayout from '../components/layouts/base-layout.vue'
 import StartPage from "../views/start-page.vue"
 import RegistrationPage from "../views/auth-pages/registration-page.vue"
@@ -69,9 +69,16 @@ router.afterEach((to, from, next) => {
     if (isHomePath) location.href = '/'
     return;
   }
-  else{
-    if(location.pathname === '/') location.href = '/home'
+  else {
+    if (location.pathname === '/') location.href = '/home'
   }
+
+  setTimeout(() => {
+    let gameCont = document.getElementById("game-container")
+    if (location.pathname === "/game/room" && gameCont === null) location.href = '/home'
+  }, 100);
+
+
 })
 
 export default router

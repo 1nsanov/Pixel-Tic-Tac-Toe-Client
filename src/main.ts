@@ -8,6 +8,7 @@ import '../src/assets/fonts/PlayMeGames/style.css'
 import DataSource from './api/dataSource'
 
 const connectLink = location.host === 'localhost:8080' ? 'http://localhost:5000' : 'https://pixel-tic-tac-toe-server.herokuapp.com'
+// const connectLink = 'https://pixel-tic-tac-toe-server.herokuapp.com';
 socketService.connect(connectLink)
   .then(() => {
     console.log('Socket connected to ' + connectLink)
