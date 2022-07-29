@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:transparent;display:block;" width="200px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+	<defs>
+		<clipPath id="progress-qdrwo0lqo2g-cp" x="0" y="0" width="100" height="100">
+			<rect x="0" y="0" width="0" height="100">
+				<animate attributeName="width" repeatCount="indefinite" dur="1s" values="0;100;100" keyTimes="0;0.5;1">
+				</animate>
+				<animate attributeName="x" repeatCount="indefinite" dur="1s" values="0;0;100" keyTimes="0;0.5;1">
+				</animate>
+			</rect>
+		</clipPath>
+	</defs>
+	<path fill="none" stroke="#1d3f72" stroke-width="4.14" d="M17 40.07L83 40.07A9.93 9.93 0 0 1 92.93 50L92.93 50A9.93 9.93 0 0 1 83 59.93L17 59.93A9.93 9.93 0 0 1 7.07 50L7.07 50A9.93 9.93 0 0 1 17 40.07 Z">
+	</path>
+	<path fill="#5699d2" clip-path="url(#progress-qdrwo0lqo2g-cp)" d="M17 44.94L83 44.94A5.06 5.06 0 0 1 88.06 50L88.06 50A5.06 5.06 0 0 1 83 55.06L17 55.06A5.06 5.06 0 0 1 11.940000000000001 50L11.940000000000001 50A5.06 5.06 0 0 1 17 44.94 Z">
+	</path>
+</svg>

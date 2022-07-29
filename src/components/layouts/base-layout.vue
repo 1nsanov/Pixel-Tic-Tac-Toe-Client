@@ -2,11 +2,15 @@
   <div class="base-layout">
     <game-start />
     <game-end />
-    <header-layout />
-    <content-layout v-if="isLoadedServer">
-      <router-view />
-    </content-layout>
-    <chat v-if="$store.state.isGameStarted" />
+
+    <ui-preload :isLoad="!isLoadedServer">
+      <header-layout />
+      <content-layout>
+        <router-view />
+      </content-layout>
+      <chat v-if="$store.state.isGameStarted" />
+    </ui-preload>
+
     <!-- <footer-layout /> -->
   </div>
 </template>
@@ -20,6 +24,7 @@ import socketService from "@/api/services/socketService";
 import Chat from "../chat/chat.vue";
 import GameStart from "../stopers/game-start.vue";
 import GameEnd from "../stopers/game-end.vue";
+
 @Options({
   name: "base-layout",
   components: {
@@ -54,10 +59,11 @@ export default class BaseLayout extends Vue {
         this.isConnectDB
       );
       if (this.isLoadedServer) clearInterval(interval);
-    }, 100);
+    }, 250);
   }
 
   get isLoadedServer(): boolean {
+    // return false;
     return this.isLoading && this.isLoadedSocket && this.isConnectDB;
   }
 }
@@ -74,12 +80,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    63.18deg,
-    #0f2027 0%,
-    #203a43 49.48%,
-    #2c5364 100%
-  );
+  background: #203a43;
+  // background: linear-gradient(
+  //   63.18deg,
+  //   #0f2027 0%,
+  //   #203a43 49.48%,
+  //   #2c5364 100%
+  // );
 }
 .base-layout {
   display: flex;

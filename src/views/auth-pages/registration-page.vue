@@ -23,12 +23,12 @@ export default class RegistrationPage extends Vue {
   errMsg: string = "";
 
   async confirm(user: IUserForm) {
-    this.errMsg = ""
+    this.errMsg = "";
     const socket = socketService.socket;
     if (!socket) return;
     let newUser = this.createUser(user);
     console.log(newUser);
-    
+
     await authService
       .userRegister(socket, newUser)
       .then((res) => {
@@ -64,6 +64,6 @@ export default class RegistrationPage extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 30px 0 0 0;
 }
 </style>

@@ -1,12 +1,15 @@
 <template>
   <div class="header">
     <div class="header_home _container" v-if="isHome">
-      <h1 class="header_home_title">pixel tic-tac-toe</h1>
+      <h1 class="header_home_title">
+        pixel <br />
+        tic-tac-toe
+      </h1>
     </div>
     <div class="header_main _container" v-else>
       <div class="header_main_content">
         <div class="header_main_content_logo">
-          <img src="../../assets/icons/logo-tac-tac-toe.svg" />
+          <img src="@/assets/icons/logo-tac-tac-toe.svg" />
         </div>
         <div class="header_main_content_game" v-if="$store.state.isGameStarted">
           {{
@@ -24,18 +27,18 @@
             <span>{{ tab.Name }}</span>
             <img
               v-if="tab.Id === 1"
-              src="../../assets/icons/icon-home-white.svg"
+              src="@/assets/icons/icon-home-white.svg"
               alt=""
             />
             <img
               v-if="tab.Id === 2"
-              src="../../assets/icons/icon-stats-bars-white.svg"
+              src="@/assets/icons/icon-stats-bars-white.svg"
               alt=""
             />
           </div>
         </nav>
         <div class="header_main_content_profile" @click="logout">
-          <img src="../../assets/icons/icon-door-exit.svg" />
+          <img src="@/assets/icons/icon-door-exit.svg" />
         </div>
       </div>
     </div>
@@ -45,7 +48,7 @@
 <script lang="ts">
 import authService from "@/api/services/authService";
 import { Options, Vue } from "vue-class-component";
-import ITabModel from "../../interfaces/ITabModel";
+import ITabModel from "@/interfaces/ITabModel";
 @Options({
   name: "header-layout",
 })
@@ -110,7 +113,7 @@ export default class HeaderLayout extends Vue {
     .header_home_title {
       text-align: center;
       font-size: 64px;
-      line-height: 81px;
+      line-height: 90px;
       text-transform: uppercase;
       text-decoration: underline;
       background: linear-gradient(
@@ -123,10 +126,9 @@ export default class HeaderLayout extends Vue {
       -webkit-text-fill-color: transparent;
       background-clip: text;
       // text-fill-color: transparent;
-    }
-    @media screen and (max-width: 650px) {
-      .header_home_title {
-        font-size: 64px;
+      @media screen and (max-width: 768px) {
+        font-size: 42px;
+        line-height: 53px;
       }
     }
   }
@@ -152,9 +154,9 @@ export default class HeaderLayout extends Vue {
       .header_main_content_logo {
         width: 58px;
         @media screen and (max-width: 994px) {
-          width: 48px;
+          width: 34px;
           img {
-            width: 48px;
+            width: 34px;
           }
         }
       }
@@ -231,9 +233,9 @@ export default class HeaderLayout extends Vue {
         width: 58px;
         cursor: pointer;
         @media screen and (max-width: 994px) {
-          width: 48px;
+          width: 34px;
           img {
-            width: 48px;
+            width: 34px;
           }
         }
       }
