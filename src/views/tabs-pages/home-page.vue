@@ -1,5 +1,10 @@
 <template>
   <div class="home-page">
+    <div class="home-page_description">
+      Here you can create a new room to play or join with an existing one! It is
+      enough to enter the desired name or enter the room code that a friend gave
+      you <span> (If you have Friends)</span>
+    </div>
     <div class="home-page_create">
       <ui-input
         placeholder="Input name game"
@@ -10,8 +15,6 @@
         Create/Join game
       </ui-button>
     </div>
-    <!-- <div class="home-page_game-list">
-    </div> -->
   </div>
 </template>
 
@@ -44,6 +47,7 @@ export default class HomePage extends Vue {
     if (joined) {
       console.log("Joined room ", this.roomId);
       this.$store.state.isInRoom = true;
+      this.$store.state.roomId = this.roomId;
       this.$router.push({ name: "game", params: { id: this.roomId } });
     } else {
       console.log("Room not found");
@@ -60,14 +64,25 @@ export default class HomePage extends Vue {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 150px;
+  .home-page_description {
+    text-align: center;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 25px;
+    cursor: default;
+    span {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
   .home-page_create {
     display: flex;
     flex-direction: column;
     // margin-bottom: 30px;
-  }
-  .home-page_game-list {
-    display: flex;
-    flex-direction: column;
   }
 }
 </style>

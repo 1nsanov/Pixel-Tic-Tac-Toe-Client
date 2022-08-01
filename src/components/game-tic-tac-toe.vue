@@ -169,13 +169,13 @@ export default class GameTicTacToe extends Vue {
     if (this.endGame) return;
     let text = "";
     let won = false;
-    if (this.result[0]) {
-      text = "You won!";
+    if (this.result[0] && !this.result[1]) {
+      text = "You won!<br/> +10 Score!";
       won = true;
-    } else if (this.result[1]) {
-      text = "You lost!";
+    } else if (this.result[1] && !this.result[0]) {
+      text = "You lost!<br/> -10 Score!";
     } else if (this.result[0] && this.result[1]) {
-      text = "Tie!";
+      text = "Tie!<br/> -10 Score!";
     }
 
     if (text !== "" && socketService.socket && authService.currentUser) {

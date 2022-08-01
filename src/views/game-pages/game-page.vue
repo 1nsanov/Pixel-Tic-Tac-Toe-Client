@@ -24,6 +24,7 @@ export default class GamePage extends Vue {}
   flex-direction: column;
   justify-content: center;
   transition: 1s ease-in-out;
+  margin-top: 100px;
   .game_content {
     display: flex;
     align-items: center;

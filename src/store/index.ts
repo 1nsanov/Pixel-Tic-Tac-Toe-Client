@@ -6,7 +6,8 @@ export default createStore({
     playerSymbol: 'x',
     isPlayerTurn: true,
     isGameStarted: false,
-    gameEndText: ""
+    gameEndText: "",
+    roomId: ""
   },
   getters: {
   },

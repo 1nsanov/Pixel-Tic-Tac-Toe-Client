@@ -25,16 +25,32 @@
             :key="tab.Id"
           >
             <span>{{ tab.Name }}</span>
-            <img
+            <svg
               v-if="tab.Id === 1"
-              src="@/assets/icons/icon-home-white.svg"
-              alt=""
-            />
-            <img
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 13L11.293 3.707C11.4805 3.51953 11.7348 3.41422 12 3.41422C12.2652 3.41422 12.5195 3.51953 12.707 3.707L22 13H20V21C20 21.2652 19.8946 21.5196 19.7071 21.7071C19.5196 21.8946 19.2652 22 19 22H14V15H10V22H5C4.73478 22 4.48043 21.8946 4.29289 21.7071C4.10536 21.5196 4 21.2652 4 21V13H2Z"
+                fill="#fff"
+              />
+            </svg>
+            <svg
               v-if="tab.Id === 2"
-              src="@/assets/icons/icon-stats-bars-white.svg"
-              alt=""
-            />
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 13H16V15H0V13ZM2 9H4V12H2V9ZM5 5H7V12H5V5ZM8 8H10V12H8V8ZM11 2H13V12H11V2Z"
+                fill="#fff"
+              />
+            </svg>
           </div>
         </nav>
         <div class="header_main_content_profile" @click="logout">
@@ -84,9 +100,6 @@ export default class HeaderLayout extends Vue {
         if (this.$route.name !== "leaderboard")
           this.$router.push({ name: "leaderboard" });
         break;
-      // case 3:
-      //   if(this.$route.name !== "about") this.$router.push({ name: "about"})
-      //   break;
       default:
         break;
     }
@@ -128,7 +141,7 @@ export default class HeaderLayout extends Vue {
       // text-fill-color: transparent;
       @media screen and (max-width: 768px) {
         font-size: 42px;
-        line-height: 53px;
+        line-height: 60px;
       }
     }
   }
@@ -191,9 +204,14 @@ export default class HeaderLayout extends Vue {
           transition: 0.3s ease-in-out;
           color: #ffffff;
           border-bottom: 6px solid #ffffff;
-          img {
+          svg {
             width: 32px;
+            height: 32px;
             display: none;
+            transition: 0.3s ease-in-out;
+            path {
+              transition: 0.3s ease-in-out;
+            }
           }
           @media screen and (max-width: 994px) {
             font-size: 24px;
@@ -203,7 +221,7 @@ export default class HeaderLayout extends Vue {
             span {
               display: none;
             }
-            img {
+            svg {
               display: block;
             }
           }
@@ -211,6 +229,12 @@ export default class HeaderLayout extends Vue {
         .header_main_content_nav_item:hover {
           font-size: 36px;
           border-bottom: 6px solid #f1ffdf;
+          color: #f1ffdf;
+          svg {
+            path {
+              fill: #f1ffdf;
+            }
+          }
           @media screen and (max-width: 994px) {
             font-size: 26px;
             border-bottom: 4px solid #f1ffdf;
@@ -218,10 +242,17 @@ export default class HeaderLayout extends Vue {
         }
         .active {
           border-bottom: 6px solid #93ee62 !important;
+          color: #93ee62 !important;
+          svg {
+            path {
+              fill: #93ee62 !important;
+            }
+          }
           @media screen and (max-width: 994px) {
             border-bottom: 4px solid #93ee62 !important;
-            img {
+            svg {
               width: 36px;
+              height: 36px;
             }
           }
         }

@@ -34,7 +34,7 @@
             </ui-input>
           </div>
         </div>
-        <div class="auth-user_form_content_error-msg">{{ errorMsg }}</div>
+        <div class="auth-user_form_content_error-msg" v-html="errorMsg"></div>
         <div class="auth-user_form_content_confirm">
           <ui-button
             :style="{ width: `100%` }"
@@ -105,9 +105,9 @@ export default class AuthUser extends Vue {
       return true;
     }
     else{
-      if(this.nickname.length < 4) this.errorMsg = "Nickname must be at least 4 characters\n"
-      if(this.password.length < 6) this.errorMsg += "Password must be at least 6 characters\n"
-      if(this.nickname.length > 16) this.errorMsg += "Nickname must not be more than 16 characters\n"
+      if(this.nickname.length < 4) this.errorMsg = "Nickname must be at least 4 characters<br/>"
+      if(this.password.length < 6) this.errorMsg += "Password must be at least 6 characters<br/>"
+      if(this.nickname.length > 16) this.errorMsg += "Nickname must not be more than 16 characters<br/>"
       return false;
     }
   }
@@ -133,6 +133,7 @@ export default class AuthUser extends Vue {
 .auth-user {
   font-size: 16px;
   width: 100%;
+  margin-bottom: 50px;
   .auth-user_title {
     text-align: center;
     font-size: 32px;
@@ -164,8 +165,8 @@ export default class AuthUser extends Vue {
       }
       .auth-user_form_content_error-msg {
         font-size: 14px;
-        line-height: 19px;
-        color: #F05353;
+        line-height: 20px;
+        color: #d78914;
         padding: 7px 0 7px 0;
       }
       .auth-user_form_content_confirm {

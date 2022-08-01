@@ -41,8 +41,7 @@ export default class StartPage extends Vue {
 .start-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
+  margin-top: 100px;
   .start-page_register {
     margin: 0 0 35px 0;
   }
